@@ -4,6 +4,7 @@
 # Luke McConnell
 # Reference files: https://hugoloveit.com/posts/
 
+# Name of the S3 bucket that is hosting the static website
 baseURL = "http://mcconnellweb.com.s3-website-us-east-1.amazonaws.com"
 
 # [en, zh-cn, fr, ...] determines default content language
@@ -15,6 +16,7 @@ title = "Luke McConnell"
 # Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
 
+# Where the site should deploy in S3
 [[deployment.targets]]
 #An arbitrary name for this target.
 name = "awsbucket"
@@ -89,7 +91,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     # URL of avatar shown in home page
     avatarURL = "img/headshot.png"
     # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
-    title = "Luke McConnell"
+    title = "Luke McConnell was here"
     # subtitle shown in home page
     subtitle = "Data Scientist, Data Strategist, Data Storyteller"
     # whether to use typeit animation for subtitle
