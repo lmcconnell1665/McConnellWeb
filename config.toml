@@ -91,7 +91,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     # URL of avatar shown in home page
     avatarURL = "img/headshot.png"
     # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
-    title = "Luke McConnell was here"
+    title = "Luke McConnell"
     # subtitle shown in home page
     subtitle = "Data Scientist, Data Strategist, Data Storyteller"
     # whether to use typeit animation for subtitle
