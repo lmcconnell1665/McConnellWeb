@@ -1,7 +1,7 @@
 ![Continuous Deployment](https://github.com/lmcconnell1665/McConnellWeb/workflows/Continuous%20Deployment/badge.svg)
 
-# McConnellWeb
-A website built using [Hugo](https://gohugo.io) and the theme [LoveIt](https://hugoloveit.com).
+# [McConnellWeb](http://mcconnellweb.com.s3-website-us-east-1.amazonaws.com)
+A static website built using [Hugo](https://gohugo.io) and the theme [LoveIt](https://hugoloveit.com). This website is hosted in an AWS S3 bucket and continuous deployment is provided by GitHub Actions. My next step is to configure an AWS CloudFront distribution to take advantage of the efficiency of AWS Edge Locations.
 
 For Development:
 - source into the virtual environment containing the dependencies using  `source ~/.HugoWebsite/bin/activate` (for my dev environment only)
