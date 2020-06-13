@@ -27,6 +27,14 @@ jobs:
           make clean
           hugo
           
+      # Grants action AWS permissions for s3 bucket
+      - name: Configure-AWS-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.MCCONNELL_WEB_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.MCCONNELL_WEB_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          
       # Deploys the hugo site
       - name: Deploy-site
         run: hugo deploy
