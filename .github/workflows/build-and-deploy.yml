@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Continuous Deployment
 
 # When action will run
 on: push
