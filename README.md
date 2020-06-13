@@ -11,4 +11,4 @@ For Development:
 - replace the baseURL with the ip address and run `hugo serve --bind=0.0.0.0 --port=8080 --baseURL=http://54.196.202.85 --disableFastRender`
 
 For Production:
-(coming soon)
+- push code into the master branch and it will automatically deploy to the AWS S3 bucket (assuming all tests are passed)
