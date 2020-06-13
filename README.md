@@ -3,8 +3,6 @@
 # McConnellWeb
 A website built using [Hugo](https://gohugo.io) and the theme [LoveIt](https://hugoloveit.com).
 
-The website contents are stored in the McConnellWeb directory.
-
 For Development:
 - source into the virtual environment containing the dependencies using  `source ~/.HugoWebsite/bin/activate` (for my dev environment only)
 - use `curl ipinfo.io` to find the ip address of the development machine
