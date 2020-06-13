@@ -4,7 +4,7 @@
 # Luke McConnell
 # Reference files: https://hugoloveit.com/posts/
 
-baseURL = "http://mcconnell-web.s3-website-us-east-1.amazonaws.com/"
+baseURL = "http://mcconnellweb.com.s3-website-us-east-1.amazonaws.com"
 
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "en"
@@ -18,7 +18,7 @@ theme = "LoveIt"
 [[deployment.targets]]
 #An arbitrary name for this target.
 name = "awsbucket"
-URL = "s3://mcconnell-web/?region=us-east-1" #your bucket here
+URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
 
 [params]
   # LoveIt theme version
