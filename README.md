@@ -1,3 +1,5 @@
+![Continuous Deployment](https://github.com/lmcconnell1665/McConnellWeb/workflows/Continuous%20Deployment/badge.svg)
+
 # McConnellWeb
 A website built using [Hugo](https://gohugo.io) and the theme [LoveIt](https://hugoloveit.com).
 
