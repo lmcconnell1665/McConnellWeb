@@ -1,0 +1,392 @@
+# McConnellWeb
+# Configuration file for the Hugo website
+# Created: June 12, 2020
+# Luke McConnell
+# Reference files: https://hugoloveit.com/posts/
+
+baseURL = "http://mcconnell-web.s3-website-us-east-1.amazonaws.com/"
+
+# [en, zh-cn, fr, ...] determines default content language
+defaultContentLanguage = "en"
+# language code
+languageCode = "en"
+title = "Luke McConnell"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "LoveIt"
+
+[[deployment.targets]]
+#An arbitrary name for this target.
+name = "awsbucket"
+URL = "s3://mcconnell-web/?region=us-east-1" #your bucket here
+
+[params]
+  # LoveIt theme version
+  version = "0.2.X"
+  # site description
+  description = "Luke McConnell"
+  # site keywords
+  keywords = ["Luke", "McConnell"]
+  # site default theme ("light", "dark", "auto")
+  defaultTheme = "auto"
+    # LoveIt NEW | 0.2.0 date format
+  dateFormat = "2006-01-02"
+  # website images for Open Graph and Twitter Cards
+  images = ["/img/headshot.png"]
+
+# Title bar menu config
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    pre = "" # you can add extra information before the name (HTML format is supported), such as icons
+    post = ""  # you can add extra information after the name (HTML format is supported), such as icons
+    name = "Home"
+    url = "/"
+    title = "Home" # title will be shown when you hover on this menu link
+    weight = 1
+  [[menu.main]]
+    identifier = "resume"
+    pre = ""
+    post = ""
+    name = "Résumé"
+    url = "/resume/"
+    title = "Résumé"
+    weight = 2
+  [[menu.main]]
+    identifier = "posts"
+    pre = ""
+    post = ""
+    name = "Posts"
+    url = "/posts/"
+    title = "Posts"
+    weight = 3
+  # [[menu.main]]
+  #   identifier = "tags"
+  #   pre = ""
+  #   post = ""
+  #   name = "Tags"
+  #   url = "/tags/"
+  #   title = "Tags"
+  #   weight = 4
+  # [[menu.main]]
+  #   identifier = "categories"
+  #   pre = ""
+  #   post = ""
+  #   name = "Categories"
+  #   url = "/categories/"
+  #   title = "Categories"
+  #   weight = 5
+
+# Home page config
+[params.home]
+  # LoveIt NEW | 0.2.0 amount of RSS pages
+  rss = 10
+  # Home page profile
+  [params.home.profile]
+    enable = true
+    # Gravatar Email for preferred avatar in home page
+    gravatarEmail = ""
+    # URL of avatar shown in home page
+    avatarURL = "img/headshot.png"
+    # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
+    title = "Luke McConnell"
+    # subtitle shown in home page
+    subtitle = "Data Scientist, Data Strategist, Data Storyteller"
+    # whether to use typeit animation for subtitle
+    typeit = true
+    # whether to show social links
+    social = true
+    # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
+    disclaimer = "With a goal of solving modern business problems using data-driven decision making, I am currently pursuing a Master of Science in Business Analytics at the University of Tennessee. I aspire to create and lead analytical projects and teams using modern tools, techniques, and algorithms."
+    # Home page posts
+  [params.home.posts]
+    enable = false
+    
+# Section (all posts) page config
+[params.section]
+  # special amount of posts in each section page
+  paginate = 20
+  # date format (month and day)
+  dateFormat = "01-02"
+  # amount of RSS pages
+  rss = 10
+
+# List (category or tag) page config
+[params.list]
+  # special amount of posts in each list page
+  paginate = 20
+  # date format (month and day)
+  dateFormat = "01-02"
+  # amount of RSS pages
+  rss = 10
+  
+# Page config
+[params.page]
+  # whether to hide a page from home page
+  hiddenFromHomePage = false
+  # whether to hide a page from search results
+  hiddenFromSearch = false
+  # whether to enable twemoji
+  twemoji = false
+  # whether to enable lightgallery
+  lightgallery = false
+  # whether to enable the ruby extended syntax
+  ruby = false
+  # whether to enable the fraction extended syntax
+  fraction = false
+  # LoveIt NEW | 0.2.0 whether to enable the fontawesome extended syntax
+  fontawesome = false
+  # whether to show link to Raw Markdown content of the content
+  linkToMarkdown = false
+  # LoveIt NEW | 0.2.4 whether to show the full text content in RSS
+  rssFullText = false
+  
+  # Table of the contents config
+  [params.page.toc]
+  # whether to enable the table of the contents
+  enable = true
+  # LoveIt NEW | 0.2.9 whether to keep the static table of the contents in front of the post
+  keepStatic = false
+  # whether to make the table of the contents in the sidebar automatically collapsed
+  auto = false
+  
+  # KaTeX mathematical formulas
+  [params.page.math]
+    enable = true
+    # default block delimiter is $$ ... $$ and \\[ ... \\]
+    blockLeftDelimiter = ""
+    blockRightDelimiter = ""
+    # default inline delimiter is $ ... $ and \\( ... \\)
+    inlineLeftDelimiter = ""
+    inlineRightDelimiter = ""
+    # KaTeX extension copy_tex
+    copyTex = true
+    # KaTeX extension mhchem
+    mhchem = true
+    
+  # Code config
+  [params.page.code]
+    # whether to show the copy button of the code block
+    copy = true
+    # the maximum number of lines of displayed code by default
+    maxShownLines = 10
+    
+  # Social share links in post page (bottom corner)
+  [params.page.share]
+    enable = false
+    Twitter = false
+    Facebook = false
+    Linkedin = false
+    Whatsapp = false
+    Pinterest = false
+    Tumblr = false
+    HackerNews = false
+    Reddit = false
+    VK = false
+    Buffer = false
+    Xing = false
+    Line = false
+    Instapaper = false
+    Pocket = false
+    Digg = false
+    Stumbleupon = false
+    Flipboard = false
+    Weibo = false
+    Renren = false
+    Myspace = false
+    Blogger = false
+    Baidu = false
+    Odnoklassniki = false
+    Evernote = false
+    Skype = false
+    Trello = false
+    Mix = false
+      
+# TypeIt config
+[params.typeit]
+  # typing speed between each step (measured in milliseconds)
+  speed = 75
+  # blinking speed of the cursor (measured in milliseconds)
+  cursorSpeed = 1000
+  # character used for the cursor (HTML format is supported)
+  cursorChar = "|"
+  # cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+  duration = -1
+    
+# Analytics config
+[params.analytics]
+  enable = false
+  # Google Analytics
+  [params.analytics.google]
+    id = ""
+    # whether to anonymize IP
+    anonymizeIP = false
+      
+# Cookie consent config
+[params.cookieconsent]
+  enable = false
+  # text strings used for Cookie consent banner
+  [params.cookieconsent.content]
+    message = ""
+    dismiss = ""
+    link = ""
+      
+# Author config
+[author]
+  name = "Luke McConnell"
+  email = "luke.m.mcconnell@gmail.com"
+  #link = "mailto:luke.m.mcconnell@gmail.com"
+  link = "http://www.mcconnellweb.com"
+  
+# Social config about the author
+[params.social]
+  GitHub = "lmcconnell1665"
+  Linkedin = "lukemichaelmcconnell"
+  Twitter = ""
+  Instagram = ""
+  Facebook = ""
+  Telegram = ""
+  Medium = ""
+  Gitlab = ""
+  Youtubelegacy = ""
+  Youtubecustom = ""
+  Youtubechannel = "UC17tLtChqC5mpHAKVCNH_Og"
+  Tumblr = ""
+  Quora = ""
+  Keybase = ""
+  Pinterest = ""
+  Reddit = ""
+  Codepen = ""
+  FreeCodeCamp = ""
+  Bitbucket = ""
+  Stackoverflow = ""
+  Weibo = ""
+  Odnoklassniki = ""
+  VK = ""
+  Flickr = ""
+  Xing = ""
+  Snapchat = ""
+  Soundcloud = ""
+  Spotify = ""
+  Bandcamp = ""
+  Paypal = ""
+  Fivehundredpx = ""
+  Mix = ""
+  Goodreads = ""
+  Lastfm = ""
+  Foursquare = ""
+  Hackernews = ""
+  Kickstarter = ""
+  Patreon = ""
+  Steam = ""
+  Twitch = ""
+  Strava = ""
+  Skype = ""
+  Whatsapp = ""
+  Zhihu = ""
+  Douban = ""
+  Angellist = ""
+  Slidershare = ""
+  Jsfiddle = ""
+  Deviantart = ""
+  Behance = ""
+  Dribbble = ""
+  Wordpress = ""
+  Vine = ""
+  Googlescholar = ""
+  Researchgate = ""
+  Mastodon = ""
+  Thingiverse = ""
+  Devto = ""
+  Gitea = ""
+  XMPP = ""
+  Matrix = ""
+  Bilibili = ""
+  Email = "luke.m.mcconnell@gmail.com"
+  RSS = false # LoveIt NEW | 0.2.0
+  
+# Search config
+[params.search]
+  enable = true
+  # type of search engine ("lunr", "algolia")
+  type = "lunr"
+  # max index length of the chunked content
+  contentLength = 4000
+  # placeholder of the search bar
+  placeholder = "Search"
+  # LoveIt NEW | 0.2.1 max number of results length
+  maxResultLength = 10
+  # LoveIt NEW | 0.2.3 snippet length of the result
+  snippetLength = 30
+  # LoveIt NEW | 0.2.1 HTML tag name of the highlight part in results
+  highlightTag = "em"
+  # LoveIt NEW | 0.2.4 whether to use the absolute URL based on the baseURL in search index
+  absoluteURL = false
+  
+# App icon config
+[params.app]
+  # optional site title override for the app when added to an iOS home screen or Android launcher
+  title = "Luke's Website"
+  # whether to omit favicon resource links
+  noFavicon = false
+  # modern SVG favicon to use in place of older style .png and .ico files
+  svgFavicon = ""
+  # Android browser theme color
+  themeColor = "#ffffff"
+  # Safari mask icon color
+  iconColor = "#5bbad5"
+  # Windows v8-10 tile color
+  tileColor = "#da532c"
+  
+# Header config
+[params.header]
+  # desktop header mode ("fixed", "normal", "auto")
+  desktopMode = "fixed"
+  # mobile header mode ("fixed", "normal", "auto")
+  mobileMode = "auto"
+  # LoveIt NEW | 0.2.0 Header title config
+  [params.header.title]
+    # URL of the LOGO
+    logo = ""
+    # title name
+    name = "Luke McConnell"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    # LoveIt NEW | 0.2.5 whether to use typeit animation for title name
+    typeit = false
+  
+# Footer config
+[params.footer]
+  enable = true
+  # LoveIt NEW | 0.2.0 Custom content (HTML format is supported)
+  custom = ''
+  # LoveIt NEW | 0.2.0 whether to show Hugo and theme info
+  hugo = false
+  # LoveIt NEW | 0.2.0 whether to show copyright info
+  copyright = true
+  # LoveIt NEW | 0.2.0 whether to show the author
+  author = true
+  # Site creation time
+  since = 2020
+  # ICP info only in China (HTML format is supported)
+  icp = ""
+  # license info (HTML format is supported)
+  license = ""
+
+# Sitemap config
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Markup related configuration in Hugo
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+    
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
