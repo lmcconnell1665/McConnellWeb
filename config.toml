@@ -217,10 +217,10 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     
 # Analytics config
 [params.analytics]
-  enable = false
+  enable = true
   # Google Analytics
   [params.analytics.google]
-    id = ""
+    id = "UA-164624276-1"
     # whether to anonymize IP
     anonymizeIP = false
       
