@@ -50,9 +50,9 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     identifier = "resume"
     pre = ""
     post = ""
-    name = "Résumé"
+    name = "Resume"
     url = "/resume/"
-    title = "Résumé"
+    title = "Resume"
     weight = 2
   [[menu.main]]
     identifier = "posts"
