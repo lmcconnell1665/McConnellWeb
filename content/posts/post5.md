@@ -14,6 +14,11 @@ draft: false
 ---
 
 ***
+[Access the GitHub repo here](https://github.com/lmcconnell1665/StockTrader)
+
+![Python application test with Github Actions](https://github.com/lmcconnell1665/StockTrader/workflows/Python%20application%20test%20with%20Github%20Actions/badge.svg)
+
+***
 ## Introduction
 
 A machine learning project that I am working on requires access to historical stock trading data.
