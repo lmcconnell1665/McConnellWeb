@@ -14,6 +14,11 @@ draft: false
 ---
 
 ***
+[Access the GitHub repo here](https://github.com/lmcconnell1665/McConnellWeb)
+
+![Continuous Deployment](https://github.com/lmcconnell1665/McConnellWeb/workflows/Continuous%20Deployment/badge.svg)
+
+***
 ## Introduction
 
 Using GitHub Actions to build a workflow, I am able to automatically build and deploy my website anytime a change is pushed to the source code repository.
