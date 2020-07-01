@@ -34,7 +34,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     # LoveIt NEW | 0.2.0 date format
   dateFormat = "2006-01-02"
   # website images for Open Graph and Twitter Cards
-  images = ["/img/headshot.png"]
+  images = ["/img/socialcard.png"]
 
 # Title bar menu config
 [menu]
