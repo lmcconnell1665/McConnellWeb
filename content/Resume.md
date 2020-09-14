@@ -18,10 +18,17 @@ draft: false
 
 ***
 **Skills & Certifications:**
-Python, R, SQL, Visual Basic, Cloud Computing, Machine Learning, Tableau, Power BI, Git, SAP, Google Analytics, AWS Certified Cloud Practitioner
+Python, R, SQL, Visual Basic, Cloud Computing, Machine Learning, Tableau, Power BI, Git, SAP, Google Analytics, AWS Certified Cloud Practitioner, Microsoft Data Analyst Associate
 
 ***
 **Work Experience**
+
+*LBMC Data Insights - Part Time Consultant*
+
+* Practices agile scrum workflow to deliver high-end modern data platforms and analytics solutions for 3 or more clients simultaneously during a 2-week sprint using R, Python, and cloud-based analytics tools
+* Creates ETL pipelines using SQL, Azure Data Factory, and AWS Glue to normalize and warehouse gigabyte scale datasets
+* Communicates business stories using data and tools such as Power BI, Analysis Services, and Jupyter notebooks
+* Studies analytical software building best practices such as continuous deployment and containerization to continue developing value adding skills for clients
 
 *LBMC Information Security – Risk Services Intern*
 
