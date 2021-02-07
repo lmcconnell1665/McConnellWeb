@@ -20,7 +20,7 @@ I found myself referencing these DAX measures often to repurpose for new project
 
 ***
 ## SUMX()
-### Takes a table as the first argument, and an expression you want to calculate row by row and then take the sun of as the second argument
+##### Takes a table as the first argument, and an expression you want to calculate row by row and then take the sun of as the second argument
 
 ```
 // Example 1: Calculate Sales, which is the Quantity times the Price for the line items
