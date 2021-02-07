@@ -23,7 +23,7 @@ Python, R, SQL, Visual Basic, Cloud Computing, Machine Learning, Tableau, Power 
 ***
 **Work Experience**
 
-*LBMC Data Insights - Part Time Consultant*
+*LBMC Data Insights - Business Intelligence Consultant*
 
 * Practices agile scrum workflow to deliver high-end modern data platforms and analytics solutions for 3 or more clients simultaneously during a 2-week sprint using R, Python, and cloud-based analytics tools
 * Creates ETL pipelines using SQL, Azure Data Factory, and AWS Glue to normalize and warehouse gigabyte scale datasets

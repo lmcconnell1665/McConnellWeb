@@ -6,9 +6,9 @@ A static website built using [Hugo](https://gohugo.io) and the theme [LoveIt](ht
 [Tutorial on how I am using GitHub Actions to deploy this website](https://mcconnellweb.com/posts/post4/)
 
 For Development:
-- source into the virtual environment containing the dependencies using  `source ~/.HugoWebsite/bin/activate` (for my dev environment only)
+- source into the virtual environment containing the dependencies using  `source ~/.McConnellWeb/bin/activate` (for my dev environment only)
 - use `curl ipinfo.io` to find the ip address of the development machine
-- replace the baseURL with the ip address and run `hugo serve --bind=0.0.0.0 --port=8080 --baseURL=http://54.89.75.134 --disableFastRender`
+- replace the baseURL with the ip address and run `hugo serve --bind=0.0.0.0 --port=8080 --baseURL=http://23.117.132.94 --disableFastRender`
 
 For Production:
 - push code into the master branch and it will be automatically deployed to the AWS S3 bucket (assuming all tests are passed) using the GitHub Actions.
