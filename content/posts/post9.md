@@ -1,5 +1,5 @@
 ---
-title: "DAX Example Measures/Columns"
+title: "DAX Dictionary - Example Measures/Columns"
 date: 2021-02-07T04:06:22Z
 author:
 authorLink:
@@ -19,52 +19,211 @@ draft: false
 I found myself referencing these DAX measures often to repurpose for new projects. Hopefully some of them can be useful for you as well!
 
 ***
-## DAX Function
-Take this [link to AWS](https://portal.aws.amazon.com/billing/signup#/start) and sign up for a free account.
-The credentials you use to create this account will be your root user.
-It is best practice NOT to use the root user to login to AWS.
-I'd recommend creating yourself an admin IAM user and using this for the rest of the tutorial.
+## SUMX()
+### Takes a table as the first argument, and an expression you want to calculate row by row and then take the sun of as the second argument
 
-Once you have created your accounts and completed the setup process you should see the AWS Management Console.
+```
+// Example 1: Calculate Sales, which is the Quantity times the Price for the line items
+Sales Amount =
+SUMX ( Sales, Sales[Quantity] * Sales[Net Price] )
 
-{{< image src="/img/post8/AWSManagementConsole.png" caption="The AWS Management Console">}}
+// Example 2: Calculate the average sales per customer, for customers with a type = "Company"
+Amount/Company = 
+CALCULATE (
+    AVERAGEX ( Customer, Sales[Sales Amount] ),
+    Customer[Customer Type] = "Company"
+)
+```
 
 ***
-## DAX Function 2
-Navigate to the `EC2` console by selecting this option under compute.
-This is where we can create a virtual machine.
-Next select `Spot Requests` on the left.
-An AWS spot instance allows you to take advantage of unused compute nodes at a discounted price.
-Instead of letting compute units that aren't currently in use in AWS data centers sit idle, they "auction" these off at a discounted price.
+## AVERAGEX()
+### Takes a table as the first argument, and an expression you want to calculate row by row and then take the average of as the second argument
 
-{{< image src="/img/post8/SpotRequest.png" caption="Spot Request Window">}}
+```
+// Example 1: Calculate the average delivery time for all sales (using `ALL()`) will make this measure return the same number no matter then filter context)
+Avg All Delivery =
+AVERAGEX ( ALL ( Sales ), Sales[Delivery Date] - Sales[Order Date] )
 
-The next page is where we select the kind of machine that we want to request.
-This is where we can begin to leverage the benefits of the cloud.
-Instead of being limited by the hardware of your local machine, we now can access a very powerful one in the cloud.
-You are billed by the amount of time you use these resources. 
-The more powerful the resources, the most expensive they are.
+// Example 2: Same calculation as Example 1, except will dynamically adjust based on the filter context of the row (average delivery time of the specific delivery)
+Avg Delivery = 
+AVERAGEX ( Sales, Sales[Delivery Date] - Sales[Order Date] )
 
-I used the following criteria to request a pretty powerful spot instance.
-Adjust these to match your workload and don't forget to shut down these resources when you are finished with them.
+// Example 3: If the delivery time is longer then the average for all deliveries, return `Above Average`, else return `Below Average`
+Delivery State = 
+IF ( Sales[Delivery Date] - Sales[Order Date] >= [Avg All Delivery], "Above Average", "Below Average" )
+```
 
-Need: `Big data workloads`
-Launch template: `None` (use one of these if you will set the same request often)
-AMI: `Windows Server 2019` (this is how you select the flavor of virtual machine you will have)
+***
+## Percent of Total Calculations
+### Different ways to adjust the filter context and calculate % of total
 
-{{< image src="/img/post8/WindowsAMI.png" caption="Search the community AMIs to find an operating system for the virtual machine. I recommend Windows for beginners for a familiar user experience (no command line code).">}}
+```
+// Example 1: Basic percent of sales calculation
+% of Sales = 
+DIVIDE ( Sales[Sales Amount], CALCULATE ( Sales[Sales Amount], ALL ( Sales ) ) )
 
-Minimum compute unit: `c3.8xlarge` (this cost can add up if you forget to terminate the instance when done!) 
+// Example 2: Calculate percent of sales that are delivered in under 7 days
+% Within 7 Days =
+VAR OnTime =
+    CALCULATE ( COUNTROWS ( Sales ), Sales[Delivery Working Days] <= 7 )
+VAR TotalOrders =
+    COUNTROWS ( ( Sales ) )
+RETURN
+    DIVIDE ( OnTime, TotalOrders )
 
-{{< image src="/img/post8/InstanceType.png" caption="Select the specs of your machine. The more CPUs and Memory the faster your machine learning models will run, but the more expensive the instance.">}}
+// Example 3: Calculate percent of total sales for the current year (total category sales / total sales for year)
+% Year = 
+// Get the sales amount for the selected year
+VAR SalesAmount = Sales[Sales Amount]
+// Get the sales table records where the [Year] is same as the selected year
+VAR AllSalesTable =
+    FILTER ( ALL ( Sales ), RELATED ( 'Date'[Year] ) IN VALUES ( 'Date'[Year] ) )
+// Calculate the sum if multiplying quantity * price for each row in the AllSalesTable
+VAR AllSalesAmount =
+    SUMX ( AllSalesTable, Sales[Quantity] * Sales[Net Price] )
+// Get the percent of the total (percent of total sales of the category for selected year)
+VAR Result =
+    DIVIDE ( SalesAmount, AllSalesAmount )
+RETURN
+    Result
 
-Network: `leave as default`
-Availability zone: `any is fine` (use the region that is closest to you, which is controlled in the top right of the AWS Management Console)
-Key pair name: `Create a new pair` (VERY IMPORTANT: You must create and save a new key pair to connect to the instance. Walk through this process and download the .pem file to your local computer)
+// Example 4: Same as example 3, but using CALCULATE
+% Year using Calculate :=
+VAR SalesAmount = [Sales Amount]
+VAR AllSalesAmount =
+    CALCULATE ( [Sales Amount], ALL ( Sales ), VALUES ( 'Date'[Year] ) )
+VAR Result =
+    DIVIDE ( SalesAmount, AllSalesAmount )
+RETURN
+    Result
+```
 
-Target capacity: `1`
-Fleet request settings: `uncheck "Apply recommendations"`
+{{< image src="/img/post9/Percent-of-Total-by-Year.png" caption="Example of how Examples 3 & 4 can be used.">}}
 
-Click launch.
+***
+## SWITCH()
+### Takes an expression as the first argument and then values to match and switch between (last argument can be the default if not previously matched)
 
-{{< image src="/img/post8/ActiveSpotRequest.png" caption="You should now see the active spot instance request. It will take a few minutes for AWS to fulfil your request.">}}
+```
+// Example 1: By setting the first argument of switch as `TRUE()` you can use it like a nested if function
+Discount Category = 
+VAR DiscountPercent =
+    DIVIDE ( Sales[Unit Discount], Sales[Unit Price], 0 )
+RETURN
+    SWITCH (
+        TRUE (),
+        DiscountPercent > 0.10, "HIGH",
+        AND ( DiscountPercent > 0.05, DiscountPercent <= 0.10 ), "MEDIUM",
+        AND ( DiscountPercent <= 0.05, DiscountPercent > 0 ), "LOW",
+        "FULL PRICE"
+    )
+
+// Example 2: Need to generate a numerical `Sort By` column since it sorts alphabetically by default (Low, Medium, High isntead of High, Low, Medium)
+Discount Category Sort = 
+VAR DiscountPercent =
+    DIVIDE ( Sales[Unit Discount], Sales[Unit Price], 0 )
+RETURN
+    SWITCH (
+        TRUE (),
+        DiscountPercent > 0.10, 3,
+        AND ( DiscountPercent > 0.05, DiscountPercent <= 0.10 ), 2,
+        AND ( DiscountPercent <= 0.05, DiscountPercent > 0 ), 1,
+        0
+    )
+```
+
+***
+## COUNTROWS() and DISTINCTCOUNT()
+### Takes a table or column as the first argument (don't forget how semantic models handle unknown values, by adding a BLANK() row, which is only counted by specific functions)
+
+```
+// Example 1: Counts all of the rows in Sales (dynamic, based on the filter context of the row)
+# Sales = COUNTROWS ( Sales )
+
+// Example 2: Counts the number of distinct values for the CustomerKey column in the Sales table (does *NOT* count BLANK rows)
+# Customers = DISTINCTCOUNT( Sales[CustomerKey] )
+
+// Example 3: Counts the number of distinct values for the Order Date column in the Sales table (if a day does not exist as an order date in sales it is not counted)
+# Days = DISTINCTCOUNT(Sales[Order Date])
+```
+
+***
+## RELATED() and RELATEDTABLE()
+### Allows you to access columns that are stored in related tables (relationship must already be created in the semantic model)
+
+```
+// Example 1: There is a relationship between the Sales and the Date table, so if a sale occured in a Working day it is multiplied by 0.001 versus a non-working day which is multiplied by 0.002
+Bonus = 
+SUMX (
+    Sales,
+    VAR Amt = Sales[Quantity] * Sales[Net Price]
+    VAR Perc =
+        IF ( RELATED ( 'Date'[Working Day] ) = 1, 0.001, 0.002 )
+    RETURN
+        Amt * Perc
+)
+
+// Example 2: There is a relationship between the Customer and Date table (and this calculated column was created on the customer table), so find the `MAX` order date from the sales table for each customer
+Last Updated = 
+MAXX ( RELATEDTABLE ( Sales ), Sales[Order Date] )
+
+// Example 3: Find the total sales between a specific time period
+First Week Sales = 
+SUMX (
+    FILTER (
+        RELATEDTABLE ( Sales ),
+        AND (
+            Sales[Order Date] >= 'Product'[First Sale Date],
+            Sales[Order Date] < 'Product'[First Sale Date] + 7
+        )
+    ),
+    Sales[Quantity] * Sales[Net Price]
+)
+```
+
+***
+## VARIABLES
+### Use variables to store values that need to be re-used (compares to a constant in other programming languages)
+
+```
+// Example 1
+Avg Discount = 
+VAR GrossAmount = SUMX ( Sales, Sales[Quantity] * Sales[Unit Price] )
+VAR Discount = SUMX ( Sales, Sales[Quantity] * Sales[Unit Discount] )
+VAR AvgDiscount = DIVIDE ( Discount, GrossAmount )
+RETURN
+ AvgDiscount
+
+// Example 2
+Customer Age = 
+IF (
+    // if there is a missing value for either
+    ISBLANK ( Customer[Last Updated] ) || ISBLANK ( Customer[Birth Date] ),
+    // then return a blank
+    BLANK (),
+    // else calculate the age in days
+    VAR AgeDays = Customer[Last Updated] - Customer[Birth Date]
+    // then convert it to years
+    VAR AgeYears =
+        INT ( DIVIDE ( AgeDays, 365.25 ) )
+    // then add some words to the end
+    VAR Age =
+        CONCATENATE ( AgeYears, " years" )
+    // final the final string
+    RETURN
+        Age
+)
+
+// Example 3: Variables can also be used to store tables
+Delivery Working Days = 
+VAR DateTable =
+    FILTER (
+        'Date',
+        AND (
+            AND ( 'Date'[Date] >= Sales[Order Date], 'Date'[Date] <= Sales[Delivery Date] ),
+            'Date'[Working Day] = "WorkDay"
+        )
+    )
+RETURN
+    COUNTROWS ( DateTable )
+```
