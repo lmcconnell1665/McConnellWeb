@@ -18,51 +18,66 @@ draft: false
 
 I found myself referencing these DAX measures often to repurpose for new projects. Hopefully some of them can be useful for you as well!
 
+[GitHub Issue: Integrate with DAXformatter.com](https://github.com/lmcconnell1665/McConnellWeb/issues/2)
+
 ***
 ## SUMX()
-##### Takes a table as the first argument, and an expression you want to calculate row by row and then take the sun of as the second argument
+#### Takes a table as the first argument, and an expression you want to calculate row by row and then take the sun of as the second argument
 
+{{< admonition type=example title="SUMX examples" open=true >}}
+**Example 1:** Calculate Sales, which is the `Quantity` times the `Price` for the line items
 ```
-// Example 1: Calculate Sales, which is the Quantity times the Price for the line items
 Sales Amount =
 SUMX ( Sales, Sales[Quantity] * Sales[Net Price] )
+```
 
-// Example 2: Calculate the average sales per customer, for customers with a type = "Company"
+**Example 2:** Calculate the average sales per customer, for customers with a type = "Company"
+```
 Amount/Company = 
 CALCULATE (
     AVERAGEX ( Customer, Sales[Sales Amount] ),
     Customer[Customer Type] = "Company"
 )
 ```
+{{< /admonition >}}
 
 ***
 ## AVERAGEX()
-### Takes a table as the first argument, and an expression you want to calculate row by row and then take the average of as the second argument
+#### Takes a table as the first argument, and an expression you want to calculate row by row and then take the average of as the second argument
 
+{{< admonition type=example title="AVERAGEX examples" open=true >}}
+**Example 1:** Calculate the average delivery time for all sales (using `ALL()`) will make this measure return the same number no matter then filter context)
 ```
-// Example 1: Calculate the average delivery time for all sales (using `ALL()`) will make this measure return the same number no matter then filter context)
 Avg All Delivery =
 AVERAGEX ( ALL ( Sales ), Sales[Delivery Date] - Sales[Order Date] )
+```
 
-// Example 2: Same calculation as Example 1, except will dynamically adjust based on the filter context of the row (average delivery time of the specific delivery)
+**Example 2:** Same calculation as Example 1, except will dynamically adjust based on the filter context of the row (average delivery time of the specific delivery)
+```
 Avg Delivery = 
 AVERAGEX ( Sales, Sales[Delivery Date] - Sales[Order Date] )
+```
 
-// Example 3: If the delivery time is longer then the average for all deliveries, return `Above Average`, else return `Below Average`
+**Example 3:** If the delivery time is longer then the average for all deliveries, return `Above Average`, else return `Below Average`
+```
 Delivery State = 
 IF ( Sales[Delivery Date] - Sales[Order Date] >= [Avg All Delivery], "Above Average", "Below Average" )
 ```
+{{< /admonition >}}
 
 ***
 ## Percent of Total Calculations
-### Different ways to adjust the filter context and calculate % of total
+#### Different ways to adjust the filter context and calculate % of total
 
+{{< admonition type=example title="Percent of Total Calculation examples" open=true >}}
+**Example 1:** Basic percent of sales calculation
 ```
-// Example 1: Basic percent of sales calculation
 % of Sales = 
 DIVIDE ( Sales[Sales Amount], CALCULATE ( Sales[Sales Amount], ALL ( Sales ) ) )
+```
 
-// Example 2: Calculate percent of sales that are delivered in under 7 days
+**Example 2:** Calculate percent of sales that are delivered in under 7 days
+```
 % Within 7 Days =
 VAR OnTime =
     CALCULATE ( COUNTROWS ( Sales ), Sales[Delivery Working Days] <= 7 )
@@ -70,24 +85,30 @@ VAR TotalOrders =
     COUNTROWS ( ( Sales ) )
 RETURN
     DIVIDE ( OnTime, TotalOrders )
+```
 
-// Example 3: Calculate percent of total sales for the current year (total category sales / total sales for year)
+**Example 3:** Calculate percent of total sales for the current year (total category sales / total sales for year)
+```
 % Year = 
 // Get the sales amount for the selected year
 VAR SalesAmount = Sales[Sales Amount]
 // Get the sales table records where the [Year] is same as the selected year
 VAR AllSalesTable =
     FILTER ( ALL ( Sales ), RELATED ( 'Date'[Year] ) IN VALUES ( 'Date'[Year] ) )
-// Calculate the sum if multiplying quantity * price for each row in the AllSalesTable
+// Calculate the sum if multiplying quantity 
+// times the price for each row in the AllSalesTable
 VAR AllSalesAmount =
     SUMX ( AllSalesTable, Sales[Quantity] * Sales[Net Price] )
-// Get the percent of the total (percent of total sales of the category for selected year)
+// Get the percent of the total (percent of total 
+// sales of the category for selected year)
 VAR Result =
     DIVIDE ( SalesAmount, AllSalesAmount )
 RETURN
     Result
+```
 
-// Example 4: Same as example 3, but using CALCULATE
+**Example 4:** Same as example 3, but using CALCULATE
+```
 % Year using Calculate :=
 VAR SalesAmount = [Sales Amount]
 VAR AllSalesAmount =
@@ -100,12 +121,15 @@ RETURN
 
 {{< image src="/img/post9/Percent-of-Total-by-Year.png" caption="Example of how Examples 3 & 4 can be used.">}}
 
+{{< /admonition >}}
+
 ***
 ## SWITCH()
-### Takes an expression as the first argument and then values to match and switch between (last argument can be the default if not previously matched)
+#### Takes an expression as the first argument and then values to match and switch between (last argument can be the default if not previously matched)
 
+{{< admonition type=example title="SWITCH examples" open=true >}}
+**Example 1:** By setting the first argument of switch as `TRUE()` you can use it like a nested if function
 ```
-// Example 1: By setting the first argument of switch as `TRUE()` you can use it like a nested if function
 Discount Category = 
 VAR DiscountPercent =
     DIVIDE ( Sales[Unit Discount], Sales[Unit Price], 0 )
@@ -117,8 +141,10 @@ RETURN
         AND ( DiscountPercent <= 0.05, DiscountPercent > 0 ), "LOW",
         "FULL PRICE"
     )
+```
 
-// Example 2: Need to generate a numerical `Sort By` column since it sorts alphabetically by default (Low, Medium, High isntead of High, Low, Medium)
+**Example 2:** Need to generate a numerical `Sort By` column since it sorts alphabetically by default (Low, Medium, High isntead of High, Low, Medium)
+```
 Discount Category Sort = 
 VAR DiscountPercent =
     DIVIDE ( Sales[Unit Discount], Sales[Unit Price], 0 )
@@ -131,28 +157,36 @@ RETURN
         0
     )
 ```
+{{< /admonition >}}
 
 ***
 ## COUNTROWS() and DISTINCTCOUNT()
-### Takes a table or column as the first argument (don't forget how semantic models handle unknown values, by adding a BLANK() row, which is only counted by specific functions)
+#### Takes a table or column as the first argument (don't forget how semantic models handle unknown values, by adding a BLANK() row, which is only counted by specific functions)
 
+{{< admonition type=example title="COUNTROWS and DISTINCTCOUNT examples" open=true >}}
+**Example 1:** Counts all of the rows in Sales (dynamic, based on the filter context of the row)
 ```
-// Example 1: Counts all of the rows in Sales (dynamic, based on the filter context of the row)
 # Sales = COUNTROWS ( Sales )
+```
 
-// Example 2: Counts the number of distinct values for the CustomerKey column in the Sales table (does *NOT* count BLANK rows)
+**Example 2:** Counts the number of distinct values for the CustomerKey column in the Sales table (does *NOT* count BLANK rows)
+```
 # Customers = DISTINCTCOUNT( Sales[CustomerKey] )
+```
 
-// Example 3: Counts the number of distinct values for the Order Date column in the Sales table (if a day does not exist as an order date in sales it is not counted)
+**Example 3:** Counts the number of distinct values for the Order Date column in the Sales table (if a day does not exist as an order date in sales it is not counted)
+```
 # Days = DISTINCTCOUNT(Sales[Order Date])
 ```
+{{< /admonition >}}
 
 ***
 ## RELATED() and RELATEDTABLE()
-### Allows you to access columns that are stored in related tables (relationship must already be created in the semantic model)
+#### Allows you to access columns that are stored in related tables (relationship must already be created in the semantic model)
 
+{{< admonition type=example title="RELATED and RELATEDTABLE examples" open=true >}}
+**Example 1:** There is a relationship between the Sales and the Date table, so if a sale occured in a Working day it is multiplied by 0.001 versus a non-working day which is multiplied by 0.002
 ```
-// Example 1: There is a relationship between the Sales and the Date table, so if a sale occured in a Working day it is multiplied by 0.001 versus a non-working day which is multiplied by 0.002
 Bonus = 
 SUMX (
     Sales,
@@ -162,12 +196,16 @@ SUMX (
     RETURN
         Amt * Perc
 )
+```
 
-// Example 2: There is a relationship between the Customer and Date table (and this calculated column was created on the customer table), so find the `MAX` order date from the sales table for each customer
+**Example 2:** There is a relationship between the Customer and Date table (and this calculated column was created on the customer table), so find the `MAX` order date from the sales table for each customer
+```
 Last Updated = 
 MAXX ( RELATEDTABLE ( Sales ), Sales[Order Date] )
+```
 
-// Example 3: Find the total sales between a specific time period
+**Example 3:** Find the total sales between a specific time period
+```
 First Week Sales = 
 SUMX (
     FILTER (
@@ -190,21 +228,25 @@ COUNTROWS (
     )
 )
 ```
+{{< /admonition >}}
 
 ***
 ## VARIABLES
-### Use variables to store values that need to be re-used (compares to a constant in other programming languages)
+#### Use variables to store values that need to be re-used (compares to a constant in other programming languages)
 
+{{< admonition type=example title="VARIABLE examples" open=true >}}
+**Example 1:**
 ```
-// Example 1
 Avg Discount = 
 VAR GrossAmount = SUMX ( Sales, Sales[Quantity] * Sales[Unit Price] )
 VAR Discount = SUMX ( Sales, Sales[Quantity] * Sales[Unit Discount] )
 VAR AvgDiscount = DIVIDE ( Discount, GrossAmount )
 RETURN
  AvgDiscount
+```
 
-// Example 2
+**Example 2:**
+```
 Customer Age = 
 IF (
     // if there is a missing value for either
@@ -222,21 +264,24 @@ IF (
     // final the final string
     RETURN
         Age
-)
+```
 
-// Example 3: Variables can also be used to store tables
+**Example 3:** Variables can also be used to store tables
+```
 Delivery Working Days = 
 VAR DateTable =
     FILTER (
         'Date',
         AND (
-            AND ( 'Date'[Date] >= Sales[Order Date], 'Date'[Date] <= Sales[Delivery Date] ),
+            AND ( 'Date'[Date] >= Sales[Order Date], 
+                  'Date'[Date] <= Sales[Delivery Date] ),
             'Date'[Working Day] = "WorkDay"
         )
     )
 RETURN
     COUNTROWS ( DateTable )
 ```
+<<<<<<< HEAD
 
 ***
 ## USING SLICER SELECTION AS METRIC PARAMETER
