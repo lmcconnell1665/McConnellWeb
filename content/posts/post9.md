@@ -179,6 +179,16 @@ SUMX (
     ),
     Sales[Quantity] * Sales[Net Price]
 )
+
+// Example 4: Create a new # Sales Transactions NA calculated column in the Product table that
+counts the number of rows in Sales related to customers living in North America
+# Sales Transactions NA = 
+COUNTROWS (
+    FILTER (
+        RELATEDTABLE ( Sales ),
+        RELATED ( Customer[Continent] ) = "North America"
+    )
+)
 ```
 
 ***
@@ -226,4 +236,25 @@ VAR DateTable =
     )
 RETURN
     COUNTROWS ( DateTable )
+```
+
+***
+## USING SLICER SELECTION AS METRIC PARAMETER
+### Use the selected value from a slicer to dynamically adjust how a measure is calculated
+
+```
+Discounted Sales = 
+VAR Discount =
+    SELECTEDVALUE ( Discounts[Discount], 0 )
+VAR PriceToUse =
+    SELECTEDVALUE ( 'Price'[Price], "Use Net Price" )
+VAR SalesAmount =
+    IF (
+        PriceToUse = "Use Unit Price",
+        SUMX ( Sales, Sales[Quantity] * Sales[Unit Price] ),
+        [Sales Amount]
+    )
+VAR Result = SalesAmount * ( 1 - Discount )
+RETURN
+    Result
 ```
