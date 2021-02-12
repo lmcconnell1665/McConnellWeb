@@ -10,6 +10,7 @@ tags:
 categories:
 - Tutorial
 draft: false
+hiddenFromHomePage: true
 ---
 
 ***

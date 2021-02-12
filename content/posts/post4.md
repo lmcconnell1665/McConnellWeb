@@ -14,6 +14,9 @@ draft: false
 ---
 
 ***
+#### Want to learn how I built this website using Python, continously integrate my code and deploy it using GitHub Actions, and make it highly available with low latency using an AWS S3 Bucket and Content Delivery Network? Check out this walk thru.
+
+***
 [Access the GitHub repo here](https://github.com/lmcconnell1665/McConnellWeb)
 
 ![Continuous Deployment](https://github.com/lmcconnell1665/McConnellWeb/workflows/Continuous%20Deployment/badge.svg)
