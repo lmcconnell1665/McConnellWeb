@@ -322,3 +322,16 @@ CALCULATE (
     )
 )
 ```
+
+***
+## REMOVEFILTER()
+### Removes all filters on a specific table 
+
+```
+Audio Sales = 
+CALCULATE (
+    [Sales Amount],
+    'Product'[Category] = "Audio",
+    REMOVEFILTERS ( 'Product' )
+)
+```
