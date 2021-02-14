@@ -304,3 +304,21 @@ VAR Result = SalesAmount * ( 1 - Discount )
 RETURN
     Result
 ```
+
+***
+## CALCULATE()
+### Using CALCULATE() to filter sales down to a unique combination of colors/brands
+
+```
+RedLitware/BlueContoso = 
+CALCULATE (
+    [Sales Amount],
+    KEEPFILTERS (
+        FILTER (
+            ALL ( 'Product'[Color], 'Product'[Brand] ),
+             ( 'Product'[Color], 'Product'[Brand] )
+                IN { ( "Red", "Litware" ), ( "Blue", "Contoso" ) }
+        )
+    )
+)
+```
