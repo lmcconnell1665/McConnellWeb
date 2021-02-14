@@ -125,6 +125,17 @@ RETURN
 {{< /admonition >}}
 
 ***
+## ALL and ALLSELECTED()
+#### Removes any filters from the selected columns or tables
+
+{{< admonition type=example title="ALL and ALLSELECTED() examples" open=true >}}
+**Example 1:** Calculate % of Total Sales (without letting report slicers affect the results)
+```
+% On All = 
+DIVIDE ( [Sales Amount], CALCULATE ( Sales[Sales Amount], ALLSELECTED( Sales ) ) )
+```
+
+***
 ## SWITCH()
 #### Takes an expression as the first argument and then values to match and switch between (last argument can be the default if not previously matched)
 
