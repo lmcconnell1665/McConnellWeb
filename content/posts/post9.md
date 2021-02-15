@@ -134,6 +134,7 @@ RETURN
 % On All = 
 DIVIDE ( [Sales Amount], CALCULATE ( Sales[Sales Amount], ALLSELECTED( Sales ) ) )
 ```
+{{< /admonition >}}
 
 ***
 ## SWITCH()
@@ -293,12 +294,13 @@ VAR DateTable =
 RETURN
     COUNTROWS ( DateTable )
 ```
-<<<<<<< HEAD
+{{< /admonition >}}
 
 ***
 ## USING SLICER SELECTION AS METRIC PARAMETER
 ### Use the selected value from a slicer to dynamically adjust how a measure is calculated
 
+{{< admonition type=example title="Slicer Selection examples" open=true >}}
 ```
 Discounted Sales = 
 VAR Discount =
@@ -315,11 +317,13 @@ VAR Result = SalesAmount * ( 1 - Discount )
 RETURN
     Result
 ```
+{{< /admonition >}}
 
 ***
 ## CALCULATE()
 ### Using CALCULATE() to filter sales down to a unique combination of colors/brands
 
+{{< admonition type=example title="CALCULATE() examples" open=true >}}
 ```
 RedLitware/BlueContoso = 
 CALCULATE (
@@ -333,11 +337,13 @@ CALCULATE (
     )
 )
 ```
+{{< /admonition >}}
 
 ***
 ## REMOVEFILTER()
 ### Removes all filters on a specific table 
 
+{{< admonition type=example title="REMOVEFILTER() examples" open=true >}}
 ```
 Audio Sales = 
 CALCULATE (
@@ -346,3 +352,4 @@ CALCULATE (
     REMOVEFILTERS ( 'Product' )
 )
 ```
+{{< /admonition >}}
