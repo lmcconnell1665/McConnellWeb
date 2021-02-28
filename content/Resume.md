@@ -17,8 +17,12 @@ draft: false
 * Graduate Teaching Assistant – Data Mining & Regression Modeling
 
 ***
-**Skills & Certifications:**
-Python, R, SQL, Visual Basic, Cloud Computing, Machine Learning, Tableau, Power BI, Git, SAP, Google Analytics, AWS Certified Cloud Practitioner, Microsoft Data Analyst Associate
+**Skills:**
+R, SQL, Python, PowerShell, Power BI, Tableau, DAX, Git, GitHub, Azure DevOps, Azure, AWS, and Google Analytics
+
+***
+**Certifications:**
+Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
 
 ***
 **Work Experience**

@@ -25,12 +25,12 @@ hiddenFromHomePage: true
 One of the key value propositions of cloud computing is only paying for resources when you need them.
 So why pay to run an expensive in-memory model, like Azure Analysis Services when you aren't using it.
 Using Azure Automation runbooks this tutorial will show you how to automatically pause and resume your Azure Analysis Services models on a schedule.
-You could combine this with the article I wrote on pausing and resuming a VM from Data Factory, to use this as a trigger instead or even call the PowerShell scripts from Azure DevOps to automate the starting of a development server when you are running your testing pipelines.
 
+You could combine this with the article I wrote on pausing and resuming a VM from Data Factory, to use this as a trigger instead or even call the PowerShell scripts from Azure DevOps to automate the starting of a development server when you are running your testing pipelines.
 
 {{< admonition type=tip title="Want to implement this even more effectively?" open=true >}}
 
-Check out this article where I implement a PowerShell script that allows you to scale the tier of the Azure Analysis Services model as well as pause/resume it on a schedule. Even more potential for maximizing users' experience during peak report use hours and savings of infrastructure costs during low use hours!
+[Check out this article](/posts/post11/) where I implement a PowerShell script that allows you to scale the tier of the Azure Analysis Services model as well as pause/resume it on a schedule. Even more potential for maximizing users' experience during peak report use hours and savings of infrastructure costs during low use hours!
 
 {{< /admonition >}}
 
