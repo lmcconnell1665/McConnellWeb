@@ -45,8 +45,12 @@ The AzureRM modules will be retired on February 29, 2024, so this script needs t
 {{< /admonition >}}
 
 ***
-## Step 3: Create a runbook
+## Step 3: Create a runbook and adjust parameters
 Create a PowerShell runbook using the script `ScalingSchedule.ps1` in [this repo](https://github.com/lmcconnell1665/AzureAnalysisServices-StartStop). This script has a few required parameters that you must configure for your specific environment.
+
+These parameters can be changed in the code of the runbook or in the user interface. I like changing them in the code so that the default values that appear in the user interfact and always correct.
+
+{{< image src="/img/post6/Parameters.png" caption="This is what the window looks like when you "start" the runbook and need to configure your parameters (defaults controlled within code).">}}
 
 ```PowerShell
 
