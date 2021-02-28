@@ -17,7 +17,13 @@ hiddenFromHomePage: true
 ***
 ## Introduction
 
-Quick start guide to leverging the power of the cloud using R Studio. This tutorial isn't complete yet, but I wanted to share incase it would help anyone in the meantime.
+Quick start guide to leverging the power of the cloud using R Studio.
+
+{{< admonition type=info title="Incomplete walk thru" open=true >}}
+
+This tutorial isn't complete yet, but I wanted to share incase it would help anyone in the meantime.
+
+{{< /admonition >}}
 
 ***
 ## Step 1: Setup an AWS account
@@ -84,10 +90,7 @@ Once you have de-crypted the password, open the rdp file to remote in to the mac
 
 ***
 ## Step 4: Connect to your virtual machine
-Download the two powershell scrips from [this GitHub repo](https://github.com/lmcconnell1665/AzureVMStartStop).
-Change the `$AutomationRG` and `$AutomationAcct` parameters at the top of each script to match the names of your resource group and the automation account that you created.
+
 
 ***
 ## Step 5: Install R Studio or other tools
-Download the two powershell scrips from [this GitHub repo](https://github.com/lmcconnell1665/AzureVMStartStop).
-Change the `$AutomationRG` and `$AutomationAcct` parameters at the top of each script to match the names of your resource group and the automation account that you created.
