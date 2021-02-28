@@ -113,7 +113,7 @@ If everything runs properly, you should see a screen similiar to the one below.
 If there are any problems during any of the steps, the workflow will stop and alert you of where the problem occured.
 This is beneficial because it will stop bad code from being deployed and also give you insight into where the error is occuring.
 
-{{< image src="/img/post4/SuccessfulActionsWorkflow.png" caption="A screenshot of a successfully completed workflow in GitHub Actions.">}}
+{{< image src="/img/cd-githubactions/SuccessfulActionsWorkflow.png" caption="A screenshot of a successfully completed workflow in GitHub Actions.">}}
 
 ***
 ## Demo

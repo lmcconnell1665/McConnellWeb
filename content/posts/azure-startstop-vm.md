@@ -38,7 +38,7 @@ Change the `$AutomationRG` and `$AutomationAcct` parameters at the top of each s
 From within the automation account in the Azure portal, navigate to the `runbooks` in the left-hand menu and use the `Import a runbook` feature to add both `Start.ps1` and `Stop.ps1`.
 As you import each runbook you must also publish the runbook. See the screenshot below for an example.
 
-{{< image src="/img/post6/PublishRunbook.png" caption="Select the top-left publish button to publish a newly imported runbook.">}}
+{{< image src="/img/azure-startstop-vm/PublishRunbook.png" caption="Select the top-left publish button to publish a newly imported runbook.">}}
 
 ***
 ## Step 3: Create a webhook
@@ -50,14 +50,14 @@ If you correctly set your parameters in the scripts before importing you will no
 This must be done once for both the start and stop runbook.
 Save and keep track of which URL is associated with which runbook.
 
-{{< image src="/img/post6/CreateWebhook.png" caption="Make sure to save the URL from this window.">}}
+{{< image src="/img/azure-startstop-vm/CreateWebhook.png" caption="Make sure to save the URL from this window.">}}
 
 ***
 ## Step 4: Add tags to your virtual machines
 These scripts work by searching for virtual machines with the `Start` and `Stop` tag keys with the values `Auto`.
 Make sure to only select the virtual machines within your resource group that you want to be automatically turned on and off.
 
-{{< image src="/img/post6/Tags.png" caption="Example of the tags required for a VM to be automatically turned on and off.">}}
+{{< image src="/img/azure-startstop-vm/Tags.png" caption="Example of the tags required for a VM to be automatically turned on and off.">}}
 
 ***
 ## Step 5: Add a webhook activity to your pipeline
@@ -66,7 +66,7 @@ The URL for this step should be the URL you created in step 3.
 The method will be `POST` and the body will be `{}`.
 Repeat the same process for the stop step at the end of your pipeline.
 
-{{< image src="/img/post6/StartPipeline.png" caption="Example of a configured start webhook.">}}
+{{< image src="/img/azure-startstop-vm/StartPipeline.png" caption="Example of a configured start webhook.">}}
 
 ***
 ## Step 6: Test the pipeline

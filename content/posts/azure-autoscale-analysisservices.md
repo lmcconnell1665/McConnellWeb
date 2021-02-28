@@ -52,7 +52,7 @@ Create a PowerShell runbook using the script `ScalingSchedule.ps1` in [this repo
 These parameters can be changed in the code of the runbook or in the user interface. I like changing them in the code so that the default values that appear in the user interfact and always correct.
 
 ### Configuring parameters using GUI
-{{< image src="/img/post11/Parameters.png" caption="This is what the window looks like when you start the runbook and need to configure your parameters (defaults controlled within code).">}}
+{{< image src="/img/azure-autoscale-analysisservices/Parameters.png" caption="This is what the window looks like when you start the runbook and need to configure your parameters (defaults controlled within code).">}}
 
 ### Configuring parameters within PowerShell script
 

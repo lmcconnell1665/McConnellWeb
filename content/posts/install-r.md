@@ -52,7 +52,7 @@ At this point, you can launch the R Studio application and begin coding.
 If you are new to R, [here is a great “hello world” tutorial](https://www.tutorialspoint.com/r/r_basic_syntax.htm).
 I have had a lot of success with the R courses offered by [Data Camp](https://www.datacamp.com/courses/free-introduction-to-r) as well.
 
-{{< image src="/img/post1/RStudioEnvironment.png" caption="A screenshot of the R Studio environment (customized for my workflow).">}}
+{{< image src="/img/install-r/RStudioEnvironment.png" caption="A screenshot of the R Studio environment (customized for my workflow).">}}
 
 ***
 ## Step 4: Updating R & R Studio
