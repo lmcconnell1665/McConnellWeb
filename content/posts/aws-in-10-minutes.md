@@ -34,7 +34,7 @@ I'd recommend creating yourself an admin IAM user and using this for the rest of
 
 Once you have created your accounts and completed the setup process you should see the AWS Management Console.
 
-{{< image src="/img/post8/AWSManagementConsole.png" caption="The AWS Management Console">}}
+{{< image src="/img/aws-in-10-minutes/AWSManagementConsole.png" caption="The AWS Management Console">}}
 
 ***
 ## Step 2: Request a spot instance
@@ -44,7 +44,7 @@ Next select `Spot Requests` on the left.
 An AWS spot instance allows you to take advantage of unused compute nodes at a discounted price.
 Instead of letting compute units that aren't currently in use in AWS data centers sit idle, they "auction" these off at a discounted price.
 
-{{< image src="/img/post8/SpotRequest.png" caption="Spot Request Window">}}
+{{< image src="/img/aws-in-10-minutes/SpotRequest.png" caption="Spot Request Window">}}
 
 The next page is where we select the kind of machine that we want to request.
 This is where we can begin to leverage the benefits of the cloud.
@@ -59,11 +59,11 @@ Need: `Big data workloads`
 Launch template: `None` (use one of these if you will set the same request often)
 AMI: `Windows Server 2019` (this is how you select the flavor of virtual machine you will have)
 
-{{< image src="/img/post8/WindowsAMI.png" caption="Search the community AMIs to find an operating system for the virtual machine. I recommend Windows for beginners for a familiar user experience (no command line code).">}}
+{{< image src="/img/aws-in-10-minutes/WindowsAMI.png" caption="Search the community AMIs to find an operating system for the virtual machine. I recommend Windows for beginners for a familiar user experience (no command line code).">}}
 
 Minimum compute unit: `c3.8xlarge` (this cost can add up if you forget to terminate the instance when done!) 
 
-{{< image src="/img/post8/InstanceType.png" caption="Select the specs of your machine. The more CPUs and Memory the faster your machine learning models will run, but the more expensive the instance.">}}
+{{< image src="/img/aws-in-10-minutes/InstanceType.png" caption="Select the specs of your machine. The more CPUs and Memory the faster your machine learning models will run, but the more expensive the instance.">}}
 
 Network: `leave as default`
 Availability zone: `any is fine` (use the region that is closest to you, which is controlled in the top right of the AWS Management Console)
@@ -74,7 +74,7 @@ Fleet request settings: `uncheck "Apply recommendations"`
 
 Click launch.
 
-{{< image src="/img/post8/ActiveSpotRequest.png" caption="You should now see the active spot instance request. It will take a few minutes for AWS to fulfil your request.">}}
+{{< image src="/img/aws-in-10-minutes/ActiveSpotRequest.png" caption="You should now see the active spot instance request. It will take a few minutes for AWS to fulfil your request.">}}
 
 
 ***

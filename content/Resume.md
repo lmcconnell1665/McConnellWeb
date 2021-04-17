@@ -34,6 +34,8 @@ Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fun
 * Communicates business stories using data and tools such as Power BI, Analysis Services, and Jupyter notebooks
 * Studies analytical software building best practices such as continuous deployment and containerization to continue developing value adding skills for clients
 
+&nbsp;
+
 *LBMC Information Security – Risk Services Intern*
 
 * Utilized Microsoft Power BI to create reporting dashboards to analyze project budgeting, employee scheduling, and company revenue for a firm composed of 9 different companies, over 10,000 clients, and 600 employees
