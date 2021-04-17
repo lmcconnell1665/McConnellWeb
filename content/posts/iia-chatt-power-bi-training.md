@@ -56,7 +56,7 @@ Make sure to follow the lab manual instructions for downloading and storing the 
 
 {{< admonition type=tip title="Where to start" open=true >}}
 
-The solution from the first demo is the starting point for the second demo.
+The solution from the first Demo 2 (above) is the starting point for the Demo 3.
 
 {{< /admonition >}}
 
@@ -67,7 +67,7 @@ The solution from the first demo is the starting point for the second demo.
 
 {{< admonition type=tip title="Demo file" open=true >}}
 
-This demo file contains a lot of examples of new Power BI features. Use the introduction tab to explore more of these features.
+This demo file contains lots of examples of new Power BI features. Use the introduction tab to explore more of these features.
 
 {{< /admonition >}}
 
