@@ -65,11 +65,15 @@ The solution from the first demo is the starting point for the second demo.
 
 - [Example file (pbix)](https://s3.amazonaws.com/mcconnell.publicfiles/iia-chattanooga-power-bi-training-april-2021/Online+Sales+Demos.pbix)
 
+{{< admonition type=tip title="Demo file" open=true >}}
+
+This demo file contains a lot of examples of new Power BI features. Use the introduction tab to explore more of these features.
+
+{{< /admonition >}}
+
 ***
 ## More Resources
 
 - [Completed demo dashboard (pbix)](https://s3.amazonaws.com/mcconnell.publicfiles/iia-chattanooga-power-bi-training-april-2021/DIAD+Final+Report.pbix)
 - [Microsoft Power BI examples](https://docs.microsoft.com/en-us/power-bi/create-reports/sample-datasets)
 - [Guy in a Cube YouTube Channel](https://www.youtube.com/channel/UCFp1vaKzpfvoGai0vE5VJ0w)
-
-
