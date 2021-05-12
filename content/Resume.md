@@ -18,21 +18,25 @@ draft: false
 
 ***
 **Skills:**
-R, SQL, Python, PowerShell, Power BI, Tableau, DAX, Git, GitHub, Azure DevOps, Azure, AWS, and Google Analytics
+SQL, DAX, Python, R, PowerShell, Git, Azure DevOps, Microsoft Azure (Bicep), Microsoft Power Platform
 
 ***
 **Certifications:**
-Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
+Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Microsoft Certified: Azure AI Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
 
 ***
 **Work Experience**
 
 *LBMC Data Insights - Business Intelligence Consultant*
 
-* Practices agile scrum workflow to deliver high-end modern data platforms and analytics solutions for 3 or more clients simultaneously during a 2-week sprint using R, Python, and cloud-based analytics tools
-* Creates ETL pipelines using SQL, Azure Data Factory, and AWS Glue to normalize and warehouse gigabyte scale datasets
-* Communicates business stories using data and tools such as Power BI, Analysis Services, and Jupyter notebooks
-* Studies analytical software building best practices such as continuous deployment and containerization to continue developing value adding skills for clients
+* Practices agile scrum development processes to deliver enterprise-scale data platforms and analytics solutions in
+the healthcare, manufacturing, and retail industries using cloud-based analytics tools
+* Creates scalable data warehouses using SQL, Python, PowerShell, Azure Data Factory, and DAX to extract,
+normalize, and store gigabyte scale datasets
+* Communicates business stories using data tools such as Power BI, Analysis Services, and Azure Machine Learning
+Studio
+* Implements software development best practices using development tools including Git, Azure DevOps Pipelines,
+ARM, and Bicep
 
 &nbsp;
 
