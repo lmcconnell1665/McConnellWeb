@@ -16,7 +16,8 @@ draft: false
 ***
 ## Introduction
 Ok, the title might be a slight hyperbole, as the Azure portal is an extremely useful interface for monitoring resources and learning. 
-What makes me cringe is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
+Plus, even as I write this I have 3 different Azure portal tabs open.
+What does make me cringe though is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
 This isn't naturally *repeatable* or *scalable*, which are both supposed to be major value propositions of shifting to the cloud.
 
 ***
