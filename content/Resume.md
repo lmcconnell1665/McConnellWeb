@@ -22,7 +22,7 @@ SQL, DAX, Python, R, PowerShell, Git, Azure DevOps, Microsoft Azure (Bicep), Mic
 
 ***
 **Certifications:**
-Microsoft Certified: Azure Data Science Associate, Microsoft Certified: Azure Data Engineer Associate, Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Microsoft Certified: Azure AI Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
+Microsoft Certified: Azure Database Administrator Associate, Microsoft Certified: Azure Data Science Associate, Microsoft Certified: Azure Data Engineer Associate, Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Microsoft Certified: Azure AI Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
 
 ***
 **Work Experience**
