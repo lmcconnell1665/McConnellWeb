@@ -21,7 +21,7 @@ hiddenFromHomePage: true
 
 Throughout the presentation I will do a lot of walk thrus and demos. All of the data, detailed instructions, and solution files can be found below. A majority of these resources were created by Mircosoft and the latest versions can be found [here](https://powerbi.microsoft.com/en-us/diad/).
 
-- Event Presentation (email me if you want a copy)
+- [Event Presentation](https://s3.amazonaws.com/mcconnell.publicfiles/iia-chattanooga-power-bi-training-april-2021/IIA-PowerBI-Presentation.pdf)
 
 ***
 ## Demo 1: Install Power BI
