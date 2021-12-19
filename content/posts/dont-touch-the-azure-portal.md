@@ -16,8 +16,8 @@ draft: false
 ***
 ## Introduction
 Ok, the title might be a slight clickbait hyperbole, as the Azure portal is an extremely useful interface for monitoring resources and learning. 
-Even as I write this I have 3 different Azure portal tabs open.
-What does make me cringe, however, is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
+Even as I write this, I have 3 different tabs open to the Azure portal.
+However, what does make me cringe is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
 This isn't naturally *repeatable* or *scalable*, which are both supposed to be major value propositions of shifting to the cloud.
 
 ***
@@ -44,11 +44,11 @@ When they fail, they must be carefully nursed back to health.
 &nbsp;
 
 **The solution:** Instead, using infrastructure as code, organizations can take a "cattle" approach to managing servers. 
-If the detailed configuration of these servers is stored as code, when one server fails, it can be replaced with a new identically configured server in seconds.
+If the detailed configuration of these servers is stored as code, when one server fails, it can be replaced with a new identically configured server in minutes.
 
 ***
 ## Reason 2: Scalability (automation)
-So maybe launching the Azure portal to spin up a couple simple resources isn't very time consuming, but I can almost guarantee you that your simple one resource deployment will slowly grow into a complex solution of integrated resources. 
+So maybe launching the Azure portal to spin up a few simple resources isn't very time consuming, but I can almost guarantee you that your simple one resource deployment will slowly grow into a complex solution of integrated resources. 
 Implement the best practice while it is small and simple, so that it can grow with you!
 When your one resource deployment turns into a scale set of thousands of servers, you'll be glad you have a consistent template that makes managing at this scale easy.
 
@@ -58,7 +58,7 @@ When your one resource deployment turns into a scale set of thousands of servers
 
 &nbsp;
 
-**The Solution:** Using a tool like [Azure DevOps Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/), [GitHub Actions](https://docs.github.com/en/actions), or [Jenkins](https://www.jenkins.io) to automate resource deployment between environments can ensure even the most complex configurations stay in-sync. Below is an example of a deployment pipeline we use that stands up a completely refresh analytics environment including storage, servers, network security configuration, and disaster recovery plans in a few minutes. This would take a human a long time to do, especially to do so error-free.
+**The Solution:** Using a tool like [Azure DevOps Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/), [GitHub Actions](https://docs.github.com/en/actions), or [Jenkins](https://www.jenkins.io) to automate resource deployment between environments can ensure even the most complex configurations stay in-sync. Below is an example of a deployment pipeline we use that stands up a completely refresh analytics environment including storage, servers, network security configuration, and automatic disaster recovery in a few minutes. This would take a human a long time to do, especially to do so error-free.
 
 &nbsp;
 
@@ -70,11 +70,11 @@ As more agile and self-service IT strategies are adopted to increase velocity, t
 
 &nbsp;
 
-**The Problem:** Organizations need processes in place to protect their cloud resources. As mentioned above, this can relate to networking/data security, user access, and resource size allocation. Often as changes are needed, a JIRA ticket is generated to gather the necessary documentation, which results in someone on the IT team making the change manually once the correct approvals are received. This can create a bottleneck as the amount of resources under their control grows. 
+**The Problem:** Organizations need processes and controls in place to protect their cloud resources. As mentioned above, this can relate to networking/data security, user access, or resource size allocation. Often as changes are needed, a JIRA ticket (insert your company's ticketing system) is generated to gather the necessary documentation, which results in someone on the IT team making the change manually once the correct approvals are received. This can create a bottleneck as the amount of resources under their control grows. 
 
 &nbsp;
 
-**The Solution:** Say a developer needs to allocate more storage to a server because of a feature they are working on. If the infrastructure as code lives in the repository along-side the other project code artifacts, the developer can adjust the amount of allocated storage and include this code change in their pull request, right alongside all of the other code changes. This creates a chain of custody as well as the ability to require the proper approvals before automatically adjusting the resource in Azure. Bonus: IAM role assignments can also be controlled via Bicep!
+**The Solution:** Say a developer needs to allocate more storage to a server because of a feature they are working on. If the infrastructure as code lives in the repository along-side the other project code artifacts, the developer can adjust the amount of allocated storage and include this code change in their [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests), right alongside all of the other code changes they are proposing. This creates a chain of custody as well as the ability to require the proper approvals before automatically adjusting the resource in Azure. Bonus: IAM role assignments can also be controlled via Bicep!
 
 *** 
 ## Conclusion
