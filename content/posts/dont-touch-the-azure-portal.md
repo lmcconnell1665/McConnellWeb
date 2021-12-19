@@ -15,9 +15,9 @@ draft: false
 
 ***
 ## Introduction
-Ok, the title might be a slight hyperbole, as the Azure portal is an extremely useful interface for monitoring resources and learning. 
-Plus, even as I write this I have 3 different Azure portal tabs open.
-What does make me cringe though is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
+Ok, the title might be a slight clickbait hyperbole, as the Azure portal is an extremely useful interface for monitoring resources and learning. 
+Even as I write this I have 3 different Azure portal tabs open.
+What does make me cringe, however, is watching production environments be pieced together with a series of inconsistent mouse-clicks or fleets of virtual machines be deployed in the same manner. 
 This isn't naturally *repeatable* or *scalable*, which are both supposed to be major value propositions of shifting to the cloud.
 
 ***
@@ -74,7 +74,7 @@ As more agile and self-service IT strategies are adopted to increase velocity, t
 
 &nbsp;
 
-**The Solution:** Say a developer needs to allocate more storage to a server because of a feature they are working on. If the infrastructure as code lives in the repository along-side the other project code artifacts, the developer can adjust the amount of allocated storage and include this code change in their pull request, right alongside all of the other code changes. This creates a chain of custody as well as the ability to require the proper approvals before automatically adjusting the resource in Azure.
+**The Solution:** Say a developer needs to allocate more storage to a server because of a feature they are working on. If the infrastructure as code lives in the repository along-side the other project code artifacts, the developer can adjust the amount of allocated storage and include this code change in their pull request, right alongside all of the other code changes. This creates a chain of custody as well as the ability to require the proper approvals before automatically adjusting the resource in Azure. Bonus: IAM role assignments can also be controlled via Bicep!
 
 *** 
 ## Conclusion
@@ -82,6 +82,7 @@ Check out some of the resources below to see how easy it is to get started with 
 
 *** 
 ## Additional Resources
+- [Azure Bicep Templates - Open Source](https://github.com/Azure/ResourceModules)
 - [Azure Bicep Learning Path](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/learn-bicep)
 - [Terraform Tutorials](https://learn.hashicorp.com/terraform)
 - [How to Export IAC Templates from Resources in Azure](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal)
