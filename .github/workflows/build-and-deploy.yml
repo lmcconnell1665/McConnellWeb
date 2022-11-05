@@ -1,7 +1,10 @@
 name: Continuous Deployment
 
 # When action will run
-on: push
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
   # single job called "build and deploy"
