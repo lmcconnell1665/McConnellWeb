@@ -18,14 +18,26 @@ draft: false
 
 ***
 **Skills:**
-SQL, DAX, Python, R, PowerShell, Git, Azure DevOps, Microsoft Azure (Bicep), Microsoft Power Platform
+SQL, DAX, Python, R, Bash, PowerShell, Git, Azure DevOps, Azure Bicep, Microsoft Power BI, Azure Logic Apps
 
 ***
 **Certifications:**
-Microsoft Certified: Azure Database Administrator Associate, Microsoft Certified: Azure Data Science Associate, Microsoft Certified: Azure Data Engineer Associate, Microsoft Certified: Data Analyst Associate, Microsoft Certified: Azure Data Fundamentals, Microsoft Certified: Azure AI Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
+Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure Administrator Associate, Azure Database Administrator Associate, Azure Data Science Associate, Azure Data Engineer Associate, Power BI Data Analyst Associate, Azure Data Fundamentals, Azure AI Fundamentals, Amazon Cloud Practitioner Essentials, Google AdWords & Search Fundamentals, Microsoft Office Specialist in Excel
 
 ***
+
 **Work Experience**
+
+*LBMC - Data Services Manager*
+
+* Leads a team of 6 internal and contractor data professionals responsible for data strategy and analytical workloads across the LBMC Family of Companies
+* Architects the enterprise cloud data warehouse, consolidating data from 25 structured and unstructured sources using Azure Data Factory / Synapse Analytics to model into STAR schema reporting models for consumption in Power BI Premium
+* Administers the organization's Power BI tenant with over 100 workspaces, 200 reports, and 250 monthly active users
+* Maintains core company data processes, including billing data transfers, system to system API integrations, and financial reporting automation using Python, SQL, and Azure Logic Apps
+* Provides solution architecture expertise for Azure by implementing CI/CD pipelines using Azure Pipelines, Bicep infrastructure as code designs, and governance through Azure Policy
+* Drives digital transformation by leading RPA development projects to increase process efficiency using machine learning and automation
+
+&nbsp;
 
 *LBMC Data Insights - Business Intelligence Consultant*
 
