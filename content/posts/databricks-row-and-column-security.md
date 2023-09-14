@@ -19,6 +19,13 @@ hiddenFromHomePage: true
 Databricks supports both row level security (filtering of rows based on user identity) and dynamic data masking of columns (hiding data within specific columns for some users). Here are some code samples showing how this can be implemented: 
 
 
+{{< admonition type=info title="Databricks Demos" open=true >}}
+
+These code examples I am referencing came from the much more detailed `databricks demos` notebooks. [Check them out here.](https://www.databricks.com/resources/demos/tutorials/governance/table-acl-and-dynamic-views-with-uc)
+
+{{< /admonition >}}
+
+
 ***
 ## Row level security
 Row level security can be used to restrict the number of rows that a user can see. Think of this like a `where` clause to filter down data.
