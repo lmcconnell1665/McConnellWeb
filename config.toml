@@ -107,7 +107,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     # whether to show social links
     social = true
     # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
-    disclaimer = "<div>With a goal of solving modern business problems using data-driven decision making, I am currently the Data Services Manager at LBMC. I lead a team of data professionals who develop the company's analytical strategy with using modern tools, techniques, and algorithms.</div>"
+    disclaimer = "<div>With a goal of solving modern business problems using data-driven decision making, I am currently the Data Architect at Tri Star Energy. I lead a team of data professionals who develop the company's analytical strategy with using modern tools, techniques, and algorithms.</div>"
     # Home page posts
   [params.home.posts]
     enable = false
