@@ -28,6 +28,16 @@ Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure 
 
 **Work Experience**
 
+*Tri Star Energy - Data Architect*
+
+* Leverages Databricks to engineer the company’s analytics platform and team, consolidating data from 20+ internal and external sources using Python, SQL, and Scala
+* Architects data movement by designing and building APIs, event-driven integrations, dimensional data models, and decision system algorithms that turn raw data into decision intelligence
+* Drives real-time information to decision makers using event based messaging, queues, and data streaming patterns to digitize business processes
+* Engineers cloud native solutions using software development best practices such as IAC and CI/CD
+* Administers the enterprise Power BI tenant and guides analysts through development of company-wide datasets and single source of truth reports
+
+&nbsp;
+
 *LBMC - Data Services Manager*
 
 * Leads a team of 6 internal and contractor data professionals responsible for data strategy and analytical workloads across the LBMC Family of Companies
