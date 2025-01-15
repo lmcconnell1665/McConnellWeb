@@ -2,7 +2,7 @@
 title: "Resume"
 date: 2020-06-12T23:53:53Z
 draft: false
----ß
+---
 
 ***
 [Click here to download my full resume.](/img/resume.pdf)
