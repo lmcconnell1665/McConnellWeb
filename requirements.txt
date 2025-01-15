@@ -3,7 +3,7 @@ async-timeout==3.0.1
 attrs==20.2.0
 chardet==3.0.4
 hugo==0.5.2
-idna==2.10
+idna==3.7
 multidict==4.7.6
 typing-extensions==3.7.4.3
 yarl==1.5.1
