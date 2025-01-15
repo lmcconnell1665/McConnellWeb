@@ -2,7 +2,7 @@
 title: "Resume"
 date: 2020-06-12T23:53:53Z
 draft: false
----
+---ß
 
 ***
 [Click here to download my full resume.](/img/resume.pdf)
@@ -27,6 +27,24 @@ Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure 
 ***
 
 **Work Experience**
+
+*SafetyEHD - Vice President of Technology*
+
+* Designed and built AI systems leveraging RAG based LLM and agentic AI chains using Langchain that provided instant safety and compliance advice to occupational health and safety employees in the field
+* Architected a backend API server using FastAPI to provide low-latency access to proprietary business processes and information for consumption in both web and mobile applications
+* Build and led a team of 2 offshore Flutter developers to design, build, and deploy an iOS and Android application that is published on the Apple App Store and Google Play Store
+* Architected and managed cloud infrastructure across Azure, AWS, and GCP to support an audience of hundreds of users across web and mobile applications
+
+&nbsp;
+
+*MSH - Data Architect*
+
+* Engineered and launched a company-wide analytics platform integrating Fivetran, Snowflake, and dbt, reducing data processing time by 60% and enabling self-service analytics for 50+ employees across all organizational levels
+* Implemented AI-driven automation solutions that streamlined recruitment workflows, resulting in faster candidate screening and a 5% reduction in time-to-hire while maintaining quality of hires
+* Led data literacy initiatives by developing and delivering Business Intelligence training programs to 50+ employees, resulting in 10% of participants creating their own BI dashboards within 6 months
+* Architected and developed AI-powered B2B SaaS products and internal tools implementing LLM and AI agent workflows, driving time savings for customer and employee throughout daily tasks 
+
+&nbsp;
 
 *Tri Star Energy - Data Architect*
 
