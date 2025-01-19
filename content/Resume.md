@@ -18,7 +18,7 @@ draft: false
 
 ***
 **Skills:**
-SQL, DAX, Python, R, Bash, PowerShell, Git, Azure DevOps, Azure Bicep, Microsoft Power BI, Azure Logic Apps
+SQL, DAX, Python, R, Bash, PowerShell, Git, Azure DevOps, Azure Bicep, Microsoft Power BI, Azure Logic Apps, dbt, Langchain
 
 ***
 **Certifications:**
