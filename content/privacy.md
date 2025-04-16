@@ -7,8 +7,6 @@ draft: false
 # PRIVACY POLICY
 ## Strategic Technology Partners, LLC - Internal Software
 
-**Effective Date: [DATE]**
-
 This Privacy Policy describes how Strategic Technology Partners, LLC ("Company," "We," or "Us") collects, uses, and shares information in connection with your use of our internal software applications ("Software").
 
 ### 1. SCOPE AND APPLICATION
