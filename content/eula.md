@@ -5,6 +5,7 @@ draft: false
 ---
 
 # END USER LICENSE AGREEMENT
+
 ## Strategic Technology Partners, LLC - Internal Software
 
 **IMPORTANT: PLEASE READ THIS END USER LICENSE AGREEMENT CAREFULLY**
@@ -80,5 +81,3 @@ If you have any questions about this EULA, please contact the IT Department of S
 By using the Software, you acknowledge that you have read this Agreement, understand it, and agree to be bound by its terms and conditions.
 
 **STRATEGIC TECHNOLOGY PARTNERS, LLC**
-
-Last Updated: [DATE]
