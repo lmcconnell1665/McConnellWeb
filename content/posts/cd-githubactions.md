@@ -3,7 +3,7 @@ title: "Continuous Deployment using GitHub Actions"
 date: 2020-06-18T04:06:22Z
 author:
 authorLink:
-description:
+description: "Complete guide to continuous deployment with GitHub Actions and AWS S3. Build and deploy Hugo websites automatically with CI/CD workflows, including configuration examples and best practices."
 tags:
 - AWS
 - GitHub Actions

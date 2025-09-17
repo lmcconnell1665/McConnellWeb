@@ -3,7 +3,7 @@ title: "IIA Chattanooga Chapter - Power BI Training"
 date: 2021-04-17T04:06:22Z
 author:
 authorLink:
-description:
+description: "Power BI training materials and resources for IIA Chattanooga Chapter. Hands-on labs, demo files, installation guide, and step-by-step tutorials for business intelligence beginners."
 tags:
 - Power BI
 - Training

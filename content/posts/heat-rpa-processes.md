@@ -3,7 +3,7 @@ title: "Implementing RPA at Scale using HEAT Methods"
 date: 2022-11-05T04:06:22Z
 author:
 authorLink:
-description:
+description: "Scale RPA implementation with HEAT methods and Power Platform. Enterprise automation strategy guide covering ROI calculations, process selection, governance, and deployment at scale."
 tags:
 - Power Automate
 - RPA

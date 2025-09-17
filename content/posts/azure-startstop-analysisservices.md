@@ -3,7 +3,7 @@ title: "Automatically Pausing/Resuming an Azure Analysis Services model"
 date: 2021-02-21T04:06:22Z
 author:
 authorLink:
-description:
+description: "Save costs on Azure Analysis Services by automatically pausing and resuming models on a schedule. Step-by-step tutorial using Azure Automation runbooks with PowerShell scripts for cloud cost optimization."
 tags:
 - Azure
 - Analysis Services

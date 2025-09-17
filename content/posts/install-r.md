@@ -3,7 +3,7 @@ title: "Installing R and R Studio"
 date: 2020-04-20T04:06:22Z
 author:
 authorLink:
-description:
+description: "Complete guide to installing R and RStudio for statistical computing and data science. Step-by-step tutorial with screenshots, updating instructions, and getting started resources for beginners."
 tags:
 - R
 - Tutorial

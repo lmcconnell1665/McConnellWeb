@@ -3,7 +3,7 @@ title: "Auto-Scaling an Azure Analysis Services model"
 date: 2021-02-27T04:06:22Z
 author:
 authorLink:
-description:
+description: "Advanced Azure Analysis Services cost optimization with automatic scaling on schedule. PowerShell automation tutorial for scaling tiers, pausing/resuming models, and managing cloud infrastructure costs efficiently."
 tags:
 - Azure
 - Analysis Services

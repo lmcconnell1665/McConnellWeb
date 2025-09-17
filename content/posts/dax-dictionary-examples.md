@@ -3,7 +3,7 @@ title: "DAX Dictionary - Example Measures/Columns"
 date: 2021-02-07T04:06:22Z
 author:
 authorLink:
-description:
+description: "Comprehensive DAX reference with practical examples for Power BI and Analysis Services. SUMX, AVERAGEX, CALCULATE, variables, and advanced measure patterns for data modeling."
 tags:
 - DAX
 - Analysis Services

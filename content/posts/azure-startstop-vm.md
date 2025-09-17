@@ -3,7 +3,7 @@ title: "Automatically Starting/Stopping a VM with Azure Data Factory"
 date: 2020-07-19T04:06:22Z
 author:
 authorLink:
-description:
+description: "Automate Azure VM startup and shutdown with Data Factory and Automation runbooks. Cost optimization tutorial with PowerShell scripts, webhook configuration, and ETL pipeline integration."
 tags:
 - Azure
 - Data Pipeline
