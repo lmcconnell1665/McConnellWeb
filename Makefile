@@ -3,7 +3,7 @@ clean:
 	rm -rf public
 	
 setup:
-	python3 -m venv ~/.McConnellWeb
+	python3.11 -m venv ~/.McConnellWeb
 
 install:
 	pip install --upgrade pip &&\
