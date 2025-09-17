@@ -1,6 +1,6 @@
 ---
 title: "Deploy Snowflake Assets with Terraform and GitHub Actions"
-date: 2024-09-17T05:44:22Z
+date: 2025-09-17T05:44:22Z
 author:
 authorLink:
 description:
@@ -18,7 +18,7 @@ draft: false
 #### Want to learn how to use Terraform, GitHub Actions, and the Snowflake Provider to deploy assets directly to Snowflake? This walk-through shows you step by step how to set up automated Snowflake deployments using Infrastructure as Code principles.
 
 ***
-[Access the GitHub repo here](https://github.com/lmcconnell1665/McConnellWeb)
+[Access the GitHub repo here](https://github.com/lmcconnell1665/snow-terraform)
 
 ***
 ## Introduction
@@ -34,7 +34,10 @@ Create a `main.tf` file with your provider configuration:
 
 ```hcl
 provider "snowflake" {
-  password                 = var.snowflake_password
+  account  = var.snowflake_account
+  username = var.snowflake_username
+  password = var.snowflake_password
+  role     = var.snowflake_role
   preview_features_enabled = ["snowflake_database_datasource"]
 }
 
@@ -100,10 +103,25 @@ This configuration creates:
 Create a `variables.tf` file to define your input variables:
 
 ```hcl
+variable "snowflake_account" {
+  description = "Snowflake account identifier"
+  type        = string
+}
+
+variable "snowflake_username" {
+  description = "Snowflake username"
+  type        = string
+}
+
 variable "snowflake_password" {
   description = "Snowflake user password"
   type        = string
   sensitive   = true
+}
+
+variable "snowflake_role" {
+  description = "Snowflake role to use for operations"
+  type        = string
 }
 
 variable "database_id" {
@@ -117,14 +135,28 @@ variable "deployment_env" {
 }
 ```
 
-Set up your backend configuration for remote state management:
+Set up your backend configuration for remote state management with state locking:
 
 ```hcl
 terraform {
   backend "s3" {
     # Configuration will be provided via backend config files
+    # DynamoDB table for state locking will be configured in backend config files
   }
 }
+```
+
+**Important**: For state locking, you'll need to create a DynamoDB table in your AWS account. This table will be used to prevent concurrent modifications to your Terraform state.
+
+Create the DynamoDB table using AWS CLI or the AWS Console:
+
+```bash
+aws dynamodb create-table \
+  --table-name terraform-state-lock \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+  --region us-east-1
 ```
 
 ***
@@ -132,18 +164,22 @@ terraform {
 
 Create environment-specific backend configuration files:
 
-`backend_configs/staging_customer.conf`:
+`backend_configs/staging_example.conf`:
 ```
-bucket = "your-terraform-state-bucket"
-key    = "snowflake/staging/customer/terraform.tfstate"
-region = "us-east-1"
+bucket         = "your-terraform-state-bucket"
+key            = "snowflake/staging/example/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "terraform-state-lock"
+encrypt        = true
 ```
 
-`backend_configs/production_customer.conf`:
+`backend_configs/production_example.conf`:
 ```
-bucket = "your-terraform-state-bucket"
-key    = "snowflake/production/customer/terraform.tfstate"
-region = "us-east-1"
+bucket         = "your-terraform-state-bucket"
+key            = "snowflake/production/example/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "terraform-state-lock"
+encrypt        = true
 ```
 
 ***
@@ -165,8 +201,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test:
-          - customer: customer1
+        environment:
+          - env_name: example
             account_id: AWS_ACCOUNT_ID_SECRET
     
     steps:
@@ -182,13 +218,14 @@ jobs:
             echo "TF_VAR_deployment_env=staging" >> $GITHUB_ENV
             echo "BASE_BRANCH=main" >> $GITHUB_ENV
           fi
-          echo "TF_VAR_database_id=${{ matrix.test.customer }}" >> $GITHUB_ENV
+          echo "TF_VAR_database_id=${{ matrix.environment.env_name }}" >> $GITHUB_ENV
 
       - name: Set Snowflake credentials
         run: |
-          echo "TF_VAR_snowflake_host=${{ env.SNOWFLAKE_HOST }}" >> $GITHUB_ENV
-          echo "TF_VAR_snowflake_password=${{ env.SNOWFLAKE_PASSWORD }}" >> $GITHUB_ENV
-          echo "TF_VAR_snowflake_fivetran_pw=${{ env.SNOWFLAKE_FIVETRAN_PW }}" >> $GITHUB_ENV
+          echo "TF_VAR_snowflake_account=${{ secrets.SNOWFLAKE_ACCOUNT }}" >> $GITHUB_ENV
+          echo "TF_VAR_snowflake_username=${{ secrets.SNOWFLAKE_USERNAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_snowflake_password=${{ secrets.SNOWFLAKE_PASSWORD }}" >> $GITHUB_ENV
+          echo "TF_VAR_snowflake_role=${{ secrets.SNOWFLAKE_ROLE }}" >> $GITHUB_ENV
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -196,13 +233,13 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets[matrix.test.account_id] }}:role/github-devops
-          role-session-name: GitHub_DevOps
+          role-to-assume: arn:aws:iam::${{ secrets[matrix.environment.account_id] }}:role/terraform-deployment-role
+          role-session-name: Terraform_Deployment
           aws-region: us-east-1
           role-duration-seconds: 3600
 
       - name: Terraform Init
-        run: terraform init -backend-config=backend_configs/${{ env.TF_VAR_deployment_env }}_${{ matrix.test.customer }}.conf
+        run: terraform init -backend-config=backend_configs/${{ env.TF_VAR_deployment_env }}_${{ matrix.environment.env_name }}.conf
 
       - name: Terraform Format
         run: terraform fmt -check
@@ -223,8 +260,10 @@ jobs:
 ## Step 6: Configure GitHub Secrets
 
 In your GitHub repository settings, add the following secrets:
-- `SNOWFLAKE_HOST`: Your Snowflake account URL
+- `SNOWFLAKE_ACCOUNT`: Your Snowflake account identifier (e.g., `abc12345.us-east-1`)
+- `SNOWFLAKE_USERNAME`: Username for your Snowflake service account
 - `SNOWFLAKE_PASSWORD`: Password for your Snowflake service account
+- `SNOWFLAKE_ROLE`: Role to use for Snowflake operations (e.g., `ACCOUNTADMIN` or `SYSADMIN`)
 - `AWS_ACCOUNT_ID_SECRET`: AWS account ID for cross-account role assumption
 
 ***
@@ -254,7 +293,7 @@ In your GitHub repository settings, add the following secrets:
 
 **Authentication Errors**: Ensure your Snowflake credentials are correctly set in GitHub secrets and that the service account has appropriate permissions.
 
-**State Lock Issues**: If you encounter state lock errors, make sure you're using a backend that supports locking (like S3 with DynamoDB).
+**State Lock Issues**: If you encounter state lock errors, make sure you're using a backend that supports locking (like S3 with DynamoDB). Ensure your DynamoDB table exists and your AWS credentials have the necessary permissions to read/write to both the S3 bucket and DynamoDB table.
 
 **Resource Conflicts**: Use Terraform's import functionality to manage existing Snowflake resources that weren't originally created with Terraform.
 
