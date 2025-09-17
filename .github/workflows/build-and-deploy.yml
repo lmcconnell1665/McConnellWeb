@@ -14,7 +14,7 @@ jobs:
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: true
         
@@ -22,7 +22,8 @@ jobs:
       - name: Setup-hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.72.0'
+          hugo-version: 'latest'
+          extended: true
           
       # Builds the hugo website
       - name: Build-site
@@ -32,7 +33,7 @@ jobs:
           
       # Grants action AWS permissions for s3 bucket
       - name: Configure-AWS-credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.MCCONNELL_WEB_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MCCONNELL_WEB_AWS_SECRET_ACCESS_KEY }}
