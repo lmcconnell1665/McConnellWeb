@@ -26,9 +26,9 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
   # LoveIt theme version
   version = "0.2.X"
   # site description
-  description = "Luke McConnell"
+  description = "Luke McConnell is a Data and AI Architect specializing in Data Science, Data Engineering, and AI Architect using technologies like LangGraph, Databricks, and Azure."
   # site keywords
-  keywords = ["Luke", "McConnell"]
+  keywords = ["Luke", "McConnell", "Data Architecture", "AI", "Cloud Data Architect", "Data Engineering", "Analytics Engineering", "Propense.AI", "LangGraph"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
     # LoveIt NEW | 0.2.0 date format
@@ -107,7 +107,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     # whether to show social links
     social = true
     # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
-    disclaimer = "<div>With a goal of solving modern business problems using data-driven decision making, I am currently the Data Architect at MSH. I lead a team of data professionals who develop the company's analytical strategy with using modern tools, techniques, and algorithms.</div>"
+    disclaimer = "<div>With a goal of solving modern business problems using data-driven decision making, I am currently the Data and AI Architect at Propense.ai, where I lead a team of data professionals who develop the company's analytical strategy, data infrastructure, and AI workflows with using modern tools, techniques, and algorithms.</div>"
     # Home page posts
   [params.home.posts]
     enable = false
@@ -241,8 +241,8 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     dismiss = ""
     link = ""
       
-# Author config
-[author]
+# Author config (moved to params section for theme compatibility)
+[params.author]
   name = "Luke McConnell"
   email = "luke.m.mcconnell@gmail.com"
   #link = "mailto:luke.m.mcconnell@gmail.com"

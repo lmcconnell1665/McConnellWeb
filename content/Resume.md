@@ -18,7 +18,7 @@ draft: false
 
 ***
 **Skills:**
-SQL, DAX, Python, R, Bash, PowerShell, Git, Azure DevOps, Azure Bicep, Microsoft Power BI, Azure Logic Apps, dbt, Langchain
+LangGraph, LangChain, Snowflake, Databricks, dbt, SQL, DAX, Python, R, Bash, PowerShell, Git, Azure DevOps, Azure Bicep, Terraform, Microsoft Power BI, Azure Logic Apps
 
 ***
 **Certifications:**
@@ -27,6 +27,13 @@ Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure 
 ***
 
 **Work Experience**
+
+*Propense.AI - Data & AI Architect*
+
+* Developing AI-powered cross-selling and prospecting solutions that enable professional and financial services companies to expand their client portfolios through data driven insights
+* Architecting enterprise data platform integrating 10+ customer data sources via Fivetran, Snowflake and dbt to deliver machine learning ready datasets for downstream analytics
+* Leads end-to-end customer onboaridng and integration, collaborating with business and technical stakeholders across the US to successfully deploy customers on the platform
+* Designing and implementing agentic workflows using LangGraph to automate data enrichement and content delivery processes, streamlining platform operations
 
 *SafetyEHD - Vice President of Technology*
 
