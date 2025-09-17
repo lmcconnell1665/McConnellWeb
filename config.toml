@@ -241,8 +241,8 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     dismiss = ""
     link = ""
       
-# Author config
-[author]
+# Author config (moved to params section for theme compatibility)
+[params.author]
   name = "Luke McConnell"
   email = "luke.m.mcconnell@gmail.com"
   #link = "mailto:luke.m.mcconnell@gmail.com"
