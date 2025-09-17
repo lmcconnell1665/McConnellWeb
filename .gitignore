@@ -1,5 +1,6 @@
 public
 .hugo_build.lock
+resources/_gen/
 # Binaries for programs and plugins
 *.exe
 *.exe~
