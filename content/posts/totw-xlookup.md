@@ -3,7 +3,7 @@ title: "Xlookup"
 date: 2020-04-27T04:06:22Z
 author:
 authorLink:
-description:
+description: "Master Excel's XLOOKUP function - the upgraded version of VLOOKUP. Tutorial with video examples showing how to lookup values in any direction with improved functionality."
 tags:
 - Excel
 - Tool of the Week

@@ -3,7 +3,7 @@ title: "Deploy an Azure Analysis Services model from source control using Azure 
 date: 2021-03-01T04:06:22Z
 author:
 authorLink:
-description:
+description: "Deploy Azure Analysis Services models from source control using CI/CD with Azure DevOps pipelines. Complete automation tutorial with PowerShell scripts and service principal configuration."
 tags:
 - Azure
 - Analysis Services

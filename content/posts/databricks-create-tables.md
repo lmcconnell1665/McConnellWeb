@@ -3,7 +3,7 @@ title: "Create Delta Tables in Databricks"
 date: 2023-09-09T04:06:22Z
 author:
 authorLink:
-description:
+description: "Quick reference guide for creating Delta Tables in Databricks with Python. Essential syntax examples, save modes, and commands for data engineers working with Delta Lake format."
 tags:
 - Databricks
 - Delta Tables

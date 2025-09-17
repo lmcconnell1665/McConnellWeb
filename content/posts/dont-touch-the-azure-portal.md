@@ -3,7 +3,7 @@ title: "Do NOT Touch the Azure Portal"
 date: 2021-12-18T04:06:22Z
 author:
 authorLink:
-description:
+description: "Why Infrastructure as Code is essential for Azure deployments. Learn about Bicep, Azure DevOps pipelines, and best practices for consistent, scalable, and automated cloud resource management."
 tags:
 - Azure
 - Bicep

@@ -3,7 +3,7 @@ title: "Storing Stock API Data in DynamoDB"
 date: 2020-06-20T04:06:22Z
 author:
 authorLink:
-description:
+description: "Build a Python CLI tool for storing stock market data from Alpha Vantage API in AWS DynamoDB. Complete tutorial with Click framework, data pipeline setup, and machine learning preparation."
 tags:
 - AWS
 - Data Pipeline

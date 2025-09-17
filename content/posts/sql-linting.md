@@ -3,7 +3,7 @@ title: "Lint Your SQL Code - Develop with a Team"
 date: 2023-01-31T04:06:22Z
 author:
 authorLink:
-description:
+description: "Implement SQL code linting with SQLFluff for team development. Complete setup guide for automated code style enforcement with GitHub Actions and Azure DevOps pipelines."
 tags:
 - SQL
 - dbt

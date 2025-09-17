@@ -3,7 +3,7 @@ title: "Deploy Snowflake Assets with Terraform and GitHub Actions"
 date: 2025-09-17T05:44:22Z
 author:
 authorLink:
-description:
+description: "Learn how to automate Snowflake infrastructure deployment using Terraform and GitHub Actions. Complete tutorial with code examples for Infrastructure as Code, CI/CD pipelines, and best practices for data warehouse automation."
 tags:
 - Snowflake
 - Terraform

@@ -3,7 +3,7 @@ title: "Processing Analysis Services Model from Azure Data Factory"
 date: 2020-10-21T04:06:22Z
 author:
 authorLink:
-description:
+description: "Automate Azure Analysis Services model processing with Data Factory pipelines. Enterprise data solution tutorial for automated model refreshing and data pipeline integration."
 tags:
 - Azure
 - Data Pipeline

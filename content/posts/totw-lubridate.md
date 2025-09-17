@@ -3,7 +3,7 @@ title: "Lubridate Package"
 date: 2020-05-04T04:06:22Z
 author:
 authorLink:
-description:
+description: "Simplify date and time handling in R with the lubridate package. Complete tutorial with video examples for parsing dates, extracting components, and date arithmetic."
 tags:
 - R
 - Tool of the Week

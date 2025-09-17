@@ -3,7 +3,7 @@ title: "Get Started in the Cloud in 10 Minutes"
 date: 2021-01-10T04:06:22Z
 author:
 authorLink:
-description:
+description: "Quick start guide to cloud computing with AWS EC2 and R Studio. Learn to set up spot instances, connect via RDP, and leverage cloud power for data analysis and machine learning in just 10 minutes."
 tags:
 - Azure
 - Virtual Machine
