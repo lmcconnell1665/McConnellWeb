@@ -183,10 +183,10 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     
   # Social share links in post page (bottom corner)
   [params.page.share]
-    enable = false
-    Twitter = false
-    Facebook = false
-    Linkedin = false
+    enable = true
+    Twitter = true
+    Facebook = true
+    Linkedin = true
     Whatsapp = false
     Pinterest = false
     Tumblr = false
@@ -252,7 +252,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
 [params.social]
   GitHub = "lmcconnell1665"
   Linkedin = "lukemichaelmcconnell"
-  Twitter = ""
+  Twitter = "lukeaford"
   Instagram = ""
   Facebook = ""
   Telegram = ""
