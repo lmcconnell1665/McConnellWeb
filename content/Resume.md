@@ -35,6 +35,8 @@ Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure 
 * Leads end-to-end customer onboaridng and integration, collaborating with business and technical stakeholders across the US to successfully deploy customers on the platform
 * Designing and implementing agentic workflows using LangGraph to automate data enrichement and content delivery processes, streamlining platform operations
 
+&nbsp;
+
 *SafetyEHD - Vice President of Technology*
 
 * Designed and built AI systems leveraging RAG based LLM and agentic AI chains using Langchain that provided instant safety and compliance advice to occupational health and safety employees in the field

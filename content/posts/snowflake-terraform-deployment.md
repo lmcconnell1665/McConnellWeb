@@ -9,6 +9,7 @@ tags:
 - Terraform
 - GitHub Actions
 - Infrastructure as Code
+- Continuous Deployment
 categories:
 - Tutorial
 draft: false
