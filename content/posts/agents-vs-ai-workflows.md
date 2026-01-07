@@ -534,30 +534,30 @@ Use this framework to choose the right pattern:
 
 ### Choose an **Agent** when:
 
-✅ The task is open-ended or exploratory
-✅ You can't predict all possible scenarios
-✅ The system needs to adapt to unexpected situations
-✅ You're comfortable with variable execution costs
-✅ Users value flexibility over consistency
-✅ The domain is creative, research-oriented, or strategic
-✅ Debugging and observability tools are in place
+- The task is open-ended or exploratory
+- You can't predict all possible scenarios
+- The system needs to adapt to unexpected situations
+- You're comfortable with variable execution costs
+- Users value flexibility over consistency
+- The domain is creative, research-oriented, or strategic
+- Debugging and observability tools are in place
 
 ### Choose a **Workflow** when:
 
-✅ The process is well-defined and repeatable
-✅ Compliance or audit requirements exist
-✅ Predictable costs are essential
-✅ Reliability and consistency are priorities
-✅ You need to explain exactly how decisions are made
-✅ The process integrates with existing business systems
-✅ Performance optimization requires fixed execution paths
+- The process is well-defined and repeatable
+- Compliance or audit requirements exist
+- Predictable costs are essential
+- Reliability and consistency are priorities
+- You need to explain exactly how decisions are made
+- The process integrates with existing business systems
+- Performance optimization requires fixed execution paths
 
 ### Choose a **Hybrid** when:
 
-✅ Some steps are structured, others exploratory
-✅ You need agent flexibility within workflow guardrails
-✅ Different parts of the process have different requirements
-✅ You want agents for specific subtasks within a larger process
+- Some steps are structured, others exploratory
+- You need agent flexibility within workflow guardrails
+- Different parts of the process have different requirements
+- You want agents for specific subtasks within a larger process
 
 ***
 

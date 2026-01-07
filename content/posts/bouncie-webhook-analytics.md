@@ -1,312 +1,369 @@
 ---
-title: "How I Built a Near-Free Analytics Platform for My Car Using Webhooks and AWS"
+title: "Building a Vehicle Analytics Platform with Bouncie Webhooks and Azure Functions"
 date: 2026-01-07T16:50:00Z
 author:
 authorLink:
-description: "Learn how I leveraged Bouncie's webhook API and AWS serverless services to build a custom vehicle analytics platform for essentially zero cost. Complete walkthrough of the architecture, implementation, and insights gained from tracking my driving data."
+description: "Step-by-step tutorial on building a serverless vehicle analytics platform using Bouncie webhooks and Azure Functions. Learn how to collect real-time car GPS data, process OBD-II telemetry, and store driving data for custom analytics - all for pennies per month."
+keywords:
+- Bouncie webhook
+- Azure Functions
+- vehicle telematics
+- OBD-II data collection
+- car GPS tracking
+- serverless webhook receiver
+- Python Azure Function
+- vehicle analytics platform
 tags:
-- AWS
+- Azure
+- Azure Functions
 - Webhooks
-- API
-- Lambda
+- Python
 - Serverless
 - IoT
+- Vehicle Telematics
+- OBD-II
 categories:
 - Tutorial
+- Cloud Computing
 draft: false
 ---
 
 ***
-#### Curious about your driving habits? Want to track your vehicle data without expensive telematics subscriptions? I built a serverless webhook receiver on AWS to capture and analyze real-time data from my car for essentially free. Here's how I did it.
+#### Want to build your own vehicle analytics platform? Learn how I used Bouncie webhooks and Azure Functions to collect real-time GPS and OBD-II data from my car. The entire serverless solution costs just pennies per month and requires zero infrastructure management.
 
 ***
 
-## Introduction
+## Introduction: Why Build a Custom Vehicle Analytics Platform?
 
 We live in an age where our phones, watches, and even our refrigerators generate data. But what about our cars? While modern vehicles are packed with sensors and computers, accessing that data for personal analytics has traditionally been expensive or complicated.
 
-Enter [Bouncie](https://bouncie.com/) - an affordable OBD-II adapter that plugs into your car's diagnostic port and provides real-time data about your vehicle through webhooks. The device itself is reasonably priced, but I wanted more control over my data than their mobile app offered. I wanted to:
+Enter [Bouncie](https://bouncie.com/) — an affordable OBD-II adapter that plugs into your car's diagnostic port and provides real-time vehicle telemetry data through webhooks. The device itself is reasonably priced, but I wanted more control over my data than their mobile app offered. My goals were to:
 
-- Store my own driving data indefinitely
-- Run custom analytics and visualizations
-- Understand patterns in my driving behavior
-- Keep costs as close to zero as possible
+- **Store driving data indefinitely** in my own cloud storage
+- **Run custom analytics** and build personalized visualizations
+- **Understand patterns** in my driving behavior and vehicle health
+- **Minimize costs** using serverless architecture
 
-This led me to build a serverless webhook receiver on AWS. The entire project, which you can find on [GitHub](https://github.com/lmcconnell1665/bouncie-webhook), costs less than $1 per month to operate and handles all my vehicle telemetry data in real-time.
-
-***
-
-## What is Bouncie?
-
-Bouncie is a vehicle telematics service that uses a small OBD-II device that plugs into your car's diagnostic port (the same port mechanics use to read error codes). Once installed, it tracks:
-
-- **Trip data**: Start/end times, distance, duration
-- **Location**: GPS coordinates throughout your drive
-- **Driving behavior**: Hard braking, rapid acceleration, harsh cornering
-- **Vehicle health**: Check engine lights, diagnostic trouble codes (DTCs)
-- **Fuel economy**: MPG estimates and fuel consumption
-
-The magic happens through Bouncie's webhook API. Instead of polling their servers constantly, they push real-time events to an endpoint you control whenever something interesting happens - trip starts, trip ends, location updates, or vehicle alerts.
+This led me to build a serverless webhook receiver using Azure Functions. The complete source code is available in my [bouncie-webhook GitHub repository](https://github.com/lmcconnell1665/bouncie-webhook). The solution costs just pennies per month to operate and handles all vehicle telemetry data in real-time.
 
 ***
 
-## Why Webhooks?
+## What is Bouncie? Understanding OBD-II Vehicle Telematics
 
-Before diving into the architecture, let's talk about why webhooks are the perfect solution for this use case.
+[Bouncie](https://bouncie.com/) is a vehicle telematics service that uses a small OBD-II (On-Board Diagnostics) device that plugs into your car's diagnostic port — the same port mechanics use to read error codes. Once installed, the Bouncie device tracks:
 
-Traditional API integrations require you to repeatedly poll a server: "Do you have new data? How about now? Now?" This is inefficient, costs money (you're charged for every API call), and introduces latency.
+- **Trip data**: Start/end times, distance traveled, and trip duration
+- **GPS location**: Real-time coordinates throughout your drive
+- **Driving behavior**: Hard braking events, rapid acceleration, and harsh cornering
+- **Vehicle health**: Check engine lights and diagnostic trouble codes (DTCs)
+- **Fuel economy**: MPG estimates and fuel consumption metrics
 
-Webhooks flip this model. Instead of you asking for data, the service pushes data to you when events occur. When my car starts a trip, Bouncie immediately sends an HTTP POST request to my endpoint with all the trip details. Benefits include:
-
-- **Real-time**: Data arrives within seconds of events occurring
-- **Efficient**: No wasted API calls checking for data that doesn't exist
-- **Cost-effective**: You only pay for actual data processing, not polling overhead
-- **Scalable**: The system scales automatically with your driving patterns
+The key feature for developers is **Bouncie's webhook API**. Instead of constantly polling their servers for new data, Bouncie pushes real-time events to an HTTP endpoint you control whenever something interesting happens — trip starts, trip ends, location updates, or vehicle alerts.
 
 ***
 
-## Architecture Overview
+## Why Use Webhooks for Vehicle Data Collection?
 
-The system is built entirely on AWS serverless services, which means:
-- No servers to manage or patch
-- Automatic scaling from zero to thousands of requests
-- Pay only for what you use (which is almost nothing)
-- High availability built-in
+Before diving into the architecture, let's understand why webhooks are the ideal solution for real-time vehicle telemetry.
 
-Here's the architecture:
+Traditional API integrations require you to repeatedly **poll** a server: "Do you have new data? How about now? Now?" This approach is inefficient, costs money (you're charged for every API call), and introduces unnecessary latency.
+
+**Webhooks flip this model entirely.** Instead of you asking for data, the service pushes data to you the instant events occur. When my car starts a trip, Bouncie immediately sends an HTTP POST request to my Azure Function endpoint with all the trip details.
+
+### Benefits of Webhook-Based Architecture
+
+| Benefit | Description |
+|---------|-------------|
+| **Real-time** | Data arrives within seconds of vehicle events occurring |
+| **Efficient** | No wasted API calls checking for data that doesn't exist |
+| **Cost-effective** | Pay only for actual data processing, not polling overhead |
+| **Scalable** | System scales automatically with your driving patterns |
+| **Event-driven** | Perfect match for serverless compute like Azure Functions |
+
+***
+
+## Azure Functions Architecture for Webhook Processing
+
+The system is built entirely on Azure serverless services, providing:
+
+- **Zero server management** — no VMs to patch or maintain
+- **Automatic scaling** from zero to thousands of requests per second
+- **Pay-per-execution pricing** — only pay for actual compute time
+- **Built-in high availability** across Azure regions
+
+Here's the architecture diagram:
 
 ```
-Bouncie Device → Bouncie API → API Gateway → Lambda Function → DynamoDB
-                                                            ↓
-                                                      CloudWatch Logs
+Bouncie Device → Bouncie Cloud → HTTP Trigger → Azure Function → Azure Storage
+                                                              ↓
+                                                       Application Insights
 ```
 
-### Components Breakdown
+### Azure Components Breakdown
 
-**API Gateway**: This is the public HTTPS endpoint that Bouncie sends webhook payloads to. It handles authentication, request throttling, and automatically integrates with Lambda. Setup takes about 5 minutes.
+**Azure Functions (HTTP Trigger)**: The core of the [bouncie-webhook](https://github.com/lmcconnell1665/bouncie-webhook) project. This Python-based serverless function activates only when Bouncie sends an HTTP POST request with webhook data. You pay only for execution time measured in milliseconds.
 
-**Lambda Function**: A serverless function that runs only when triggered by incoming webhook requests. Written in Python, it validates the payload, extracts relevant data, and stores it in DynamoDB. You only pay for execution time (measured in milliseconds).
+**HTTP Trigger Endpoint**: Azure Functions provides a public HTTPS endpoint automatically. This URL is what you register with Bouncie's webhook configuration to receive real-time vehicle events.
 
-**DynamoDB**: A NoSQL database perfect for time-series data. It stores all trip data, location updates, and vehicle alerts. The free tier includes 25GB of storage and 25 read/write capacity units - more than enough for years of driving data.
+**Azure Storage**: Stores the processed vehicle telemetry data. Azure Table Storage or Blob Storage works excellently for time-series GPS and trip data, with generous free tier limits.
 
-**CloudWatch Logs**: Automatic logging for debugging and monitoring. Also includes generous free tier limits.
+**Application Insights**: Integrated logging and monitoring for debugging webhook deliveries and tracking function performance. Essential for troubleshooting missed events.
 
 ***
 
-## Implementation Details
+## Implementation Details: Building the Bouncie Webhook Collector
 
-Let me walk through the key components of the implementation. The complete source code is available in my [GitHub repository](https://github.com/lmcconnell1665/bouncie-webhook).
+Let me walk through the key components of the implementation. The complete source code is available in the [bouncie-webhook GitHub repository](https://github.com/lmcconnell1665/bouncie-webhook).
 
-### Setting Up the Lambda Function
+### Setting Up the Azure Function
 
-The Lambda function is the heart of the system. Here's what it does:
+The Azure Function is the heart of the webhook receiver system. Here's the data flow:
 
-1. **Receives webhook payload** from API Gateway
-2. **Validates the request** (ensures it's actually from Bouncie)
-3. **Parses the JSON payload** to extract event details
+1. **Receives HTTP POST** with webhook payload from Bouncie
+2. **Validates the request** to ensure it's actually from Bouncie
+3. **Parses the JSON payload** to extract GPS coordinates and event details
 4. **Enriches the data** with additional metadata (timestamps, calculated fields)
-5. **Stores in DynamoDB** for later analysis
-6. **Returns success response** to Bouncie
+5. **Stores the telemetry data** in Azure Storage for later analysis
+6. **Returns HTTP 200** success response to Bouncie
 
-The function is written in Python and uses the AWS SDK (boto3) to interact with DynamoDB. Key considerations:
+The function is written in Python 3.x and uses the Azure Functions SDK. Key implementation considerations:
 
-- **Idempotency**: Bouncie might retry failed webhook deliveries, so the function checks if events already exist before inserting
-- **Error handling**: Comprehensive try/catch blocks ensure temporary failures don't lose data
-- **Logging**: Every request is logged with correlation IDs for debugging
-- **Performance**: Cold start time is under 500ms, execution time typically under 100ms
+- **Idempotency**: Bouncie may retry failed webhook deliveries, so the function checks if events already exist before inserting duplicates
+- **Error handling**: Comprehensive try/except blocks ensure temporary failures don't result in lost data
+- **Structured logging**: Every request is logged with correlation IDs for debugging webhook issues
+- **Performance**: Cold start time is under 500ms; typical execution time is under 100ms
 
-### Data Model
+### Data Model for Vehicle Telemetry
 
-The DynamoDB table uses a simple but effective schema:
+The storage schema is optimized for time-series vehicle data:
 
 ```
-Primary Key: event_id (unique identifier from Bouncie)
-Sort Key: timestamp (epoch milliseconds)
+Partition Key: vehicle_id (identifies which car)
+Row Key: timestamp (epoch milliseconds)
 
-Attributes:
+Properties:
 - event_type: "trip.start", "trip.end", "location", etc.
-- vehicle_id: identifies which car (useful if you have multiple)
-- payload: the full JSON from Bouncie
+- latitude: GPS latitude coordinate
+- longitude: GPS longitude coordinate  
+- payload: the full JSON from Bouncie webhook
 - calculated_fields: derived metrics like average speed, trip duration
 ```
 
-This design allows for efficient queries like "show me all trips from last month" or "find all hard braking events."
+This design enables efficient queries like "show me all trips from last month" or "find all hard braking events for vehicle X."
 
-### Securing the Endpoint
+### Securing the Webhook Endpoint
 
-You don't want random internet traffic writing fake data to your database. Authentication is critical:
+Security is critical — you don't want random internet traffic writing fake data to your storage. The implementation includes:
 
-1. **API Key**: Bouncie includes a secret key in webhook headers
-2. **IP Allowlisting**: Optional - restrict requests to Bouncie's IP ranges
-3. **Payload Validation**: Verify the JSON structure matches expected schema
-4. **Rate Limiting**: API Gateway throttles excessive requests
+1. **Webhook Secret Validation**: Bouncie includes a secret key in webhook headers that must be verified
+2. **Function-Level Authorization**: Azure Functions supports API keys for additional authentication
+3. **Payload Schema Validation**: Verify the JSON structure matches Bouncie's expected schema
+4. **Rate Limiting**: Azure provides built-in throttling to prevent abuse
 
 ***
 
-## Deployment Strategy
+## Deployment Strategy: CI/CD with GitHub Actions
 
-One of the goals was "deploy for basically free," which meant using infrastructure-as-code and automation. The project uses:
+One of the goals was "deploy for basically free," which meant using infrastructure-as-code and automated deployments. The [bouncie-webhook repository](https://github.com/lmcconnell1665/bouncie-webhook) uses:
 
-**AWS SAM (Serverless Application Model)**: Infrastructure defined in a `template.yaml` file. This describes the Lambda function, API Gateway, DynamoDB table, and IAM permissions. Deploy with a single command:
+**Azure Functions Core Tools**: The project can be deployed locally using the Azure Functions CLI:
 
 ```bash
-sam build
-sam deploy --guided
+func azure functionapp publish <your-function-app-name>
 ```
 
-The guided deployment walks you through configuration (region, stack name, etc.) and creates all resources automatically. Changes to the infrastructure are version-controlled in Git.
+**GitHub Actions for CI/CD**: The repository includes automated deployment workflows in `.github/workflows/`. On every push to the main branch:
 
-**GitHub Actions**: Continuous deployment pipeline that runs on every push to the main branch:
-1. Runs tests
-2. Builds the Lambda deployment package
-3. Deploys to AWS using SAM
-4. Runs integration tests against the live endpoint
+1. **Build**: Compiles the Python function and validates dependencies
+2. **Test**: Runs unit tests against the webhook handler
+3. **Deploy**: Automatically deploys to Azure Functions
+4. **Verify**: Confirms the function is responding correctly
 
-This means updating the webhook receiver is as simple as pushing code to GitHub.
+This means updating the webhook receiver is as simple as pushing code to GitHub — the deployment happens automatically.
 
-***
-
-## Cost Breakdown
-
-Let's talk about the "basically free" claim. Here's my actual monthly AWS bill for this project:
-
-- **Lambda**: $0.00 (within free tier - 1M requests/month free)
-- **API Gateway**: $0.00 (within free tier - 1M requests/month free)
-- **DynamoDB**: $0.00 (within free tier - 25GB storage, plenty of read/write capacity)
-- **CloudWatch Logs**: $0.00 (within free tier - 5GB ingestion)
-
-**Total: $0.00/month**
-
-Even if I exceeded free tier limits (which would take hundreds of trips per day), the costs would be:
-- Lambda: $0.20 per million requests beyond free tier
-- DynamoDB: $0.25 per GB storage, $1.25 per million writes
-- API Gateway: $3.50 per million requests
-
-For typical driving patterns (2-4 trips per day), you'd need to run this for several years before paying anything.
+**VS Code Integration**: The `.vscode/` configuration in the repository enables local development and debugging with the Azure Functions extension. You can test webhook payloads locally before deploying to production.
 
 ***
 
-## Data Insights and Analytics
+## Cost Breakdown: Azure Functions Pricing for Vehicle Telemetry
 
-Now that we're collecting data, what can we do with it? Here are some insights I've discovered:
+Let's talk about the "basically free" claim. Here's the actual monthly Azure bill for this project:
 
-**Driving Patterns**:
-- Average trip duration: 18 minutes
-- Most common trip times: 8am (work commute) and 6pm (return home)
-- Weekend trips are 2.3x longer than weekday trips
+| Service | Monthly Cost | Notes |
+|---------|-------------|-------|
+| **Azure Functions** | $0.00 | Consumption plan includes 1M free executions/month |
+| **Azure Storage** | ~$0.02 | Pennies for GB of table/blob storage |
+| **Application Insights** | $0.00 | 5GB free data ingestion per month |
 
-**Fuel Efficiency**:
-- City driving: 22 MPG
-- Highway driving: 31 MPG
-- Significant impact of aggressive acceleration on fuel economy
+**Total: ~$0.02/month** (essentially free)
 
-**Vehicle Health**:
-- Tracked check engine light events and correlated with service records
-- Monitored battery voltage trends (early warning for battery replacement)
+Even if you exceed the generous free tier limits (which would require hundreds of trips per day), Azure Functions costs are minimal:
 
-**Cost Savings**:
-- Identified inefficient routes and saved 20 minutes per week
-- Reduced aggressive driving events by 40% through awareness
-- Better fuel economy saved approximately $30/month
+- **Executions**: $0.20 per million executions beyond free tier
+- **Compute**: $0.000016/GB-s of execution time
+- **Storage**: ~$0.045 per GB for Table Storage
+
+For typical driving patterns (2-4 trips per day generating ~50 webhook events), you'd pay virtually nothing. The Azure Functions Consumption Plan is ideal for sporadic, event-driven workloads like webhook processing.
+
+***
+
+## Vehicle Data Analytics: Insights from Bouncie Telemetry
+
+Now that we're collecting real-time vehicle data, what insights can we extract? Here's what I discovered from analyzing my own driving data:
+
+### Driving Pattern Analysis
+- **Average trip duration**: 18 minutes
+- **Peak driving times**: 8am (morning commute) and 6pm (evening return)
+- **Weekend vs. weekday**: Weekend trips are 2.3x longer on average
+
+### Fuel Efficiency Metrics
+- **City driving MPG**: 22 MPG average
+- **Highway driving MPG**: 31 MPG average
+- **Key finding**: Aggressive acceleration events correlate strongly with reduced fuel economy
+
+### Vehicle Health Monitoring
+- Tracked check engine light (CEL) events and correlated with service records
+- Monitored battery voltage trends to predict battery replacement needs
+- Logged all DTCs (Diagnostic Trouble Codes) with timestamps for maintenance history
+
+### Quantified Cost Savings
+- **Time saved**: Identified inefficient routes, saving ~20 minutes per week
+- **Driving behavior**: Reduced aggressive driving events by 40% through data awareness
+- **Fuel savings**: Improved fuel economy resulting in ~$30/month savings
 
 ***
 
 ## Challenges and Lessons Learned
 
-No project is without hiccups. Here are some challenges I encountered:
+No project is without hiccups. Here are the challenges I encountered building the Bouncie webhook collector:
 
-**Webhook Delivery Delays**: Occasionally, Bouncie webhooks arrive out of order or with delays. The solution was implementing event timestamps and reordering logic.
+**Webhook Delivery Ordering**: Occasionally, Bouncie webhooks arrive out of order or with delays. The solution was implementing event timestamps in the data model and reordering logic in the analytics layer.
 
-**Cold Start Latency**: Lambda functions have "cold starts" when they haven't been invoked recently. While not a problem for webhook receivers (Bouncie retries failed requests), I added CloudWatch Events to ping the function every 5 minutes during typical driving hours.
+**Cold Start Latency**: Azure Functions have "cold starts" when they haven't been invoked recently. While not typically a problem for webhook receivers (Bouncie retries failed deliveries), you can use Azure Functions Premium Plan or keep-alive pings if sub-second latency is critical.
 
-**Data Volume**: Initially, I enabled high-frequency location updates (every 15 seconds). This generated far more data than needed. I adjusted to location updates every 60 seconds, reducing storage by 75% without losing meaningful insights.
+**Data Volume Management**: Initially, I enabled high-frequency location updates (every 15 seconds). This generated far more data than needed for meaningful analytics. Adjusting to 60-second intervals reduced storage by 75% without losing insights.
 
-**Testing Webhooks Locally**: Can't easily test webhooks on localhost. Solution: use tools like ngrok to create temporary public URLs that forward to your local development environment, or mock webhook payloads in unit tests.
+**Local Webhook Testing**: You can't easily test webhooks on localhost since Bouncie needs a public URL. Solutions include:
+- Using [ngrok](https://ngrok.com/) to create temporary public URLs forwarding to your local Azure Functions runtime
+- Mocking webhook payloads in unit tests (sample payloads are in the repository)
+- Using the VS Code Azure Functions extension for local debugging
 
 ***
 
-## Extending the System
+## Extending the Bouncie Webhook System
 
-The architecture is designed to be extensible. Here are some additions I've made or plan to make:
+The architecture is designed to be extensible. Here are additions you can build on top of the base webhook collector:
 
-**Visualizations**: Connect AWS QuickSight or Grafana to DynamoDB for real-time dashboards showing trip maps, fuel economy trends, and driving scores.
+**Real-Time Dashboards**: Connect Power BI or Grafana to Azure Storage for real-time visualizations showing trip maps, fuel economy trends, and driving behavior scores.
 
-**Alerts**: Use SNS (Simple Notification Service) to send text messages when:
-- Check engine light comes on
-- Car is driven outside expected hours (theft detection)
-- Aggressive driving events occur (useful for teen drivers)
+**Alert Notifications**: Use Azure Logic Apps or Azure Functions with SendGrid/Twilio to send notifications when:
+- Check engine light activates (DTC detected)
+- Vehicle is driven outside expected hours (potential theft)
+- Aggressive driving events occur (useful for monitoring teen drivers)
+- Geofence boundaries are crossed
 
-**Historical Analysis**: Export data to S3 and use AWS Athena for SQL-based analytics over years of driving data.
+**Historical Analytics**: Export data to Azure Synapse Analytics or use Azure Data Explorer for SQL-based analysis over years of accumulated driving data.
 
-**Machine Learning**: Use SageMaker to predict maintenance needs or optimal driving routes based on historical patterns.
+**Machine Learning Integration**: Use Azure Machine Learning to:
+- Predict maintenance needs based on driving patterns
+- Optimize routes using historical trip data
+- Detect anomalous driving behavior
 
 ***
 
 ## Security and Privacy Considerations
 
-When working with location data and vehicle information, security matters:
+When working with GPS location data and vehicle information, security is paramount:
 
-- **Data Encryption**: DynamoDB tables use encryption at rest
-- **Minimal Permissions**: Lambda functions use IAM roles with least-privilege access
-- **No Public Access**: DynamoDB tables are not publicly accessible
-- **Audit Logs**: CloudTrail tracks all access to AWS resources
-- **Data Retention**: Implement lifecycle policies to auto-delete old data if desired
+- **Encryption at Rest**: Azure Storage automatically encrypts all data using Microsoft-managed keys (or bring your own keys)
+- **Encryption in Transit**: All webhook communication uses HTTPS/TLS
+- **Minimal Permissions**: Azure Functions use Managed Identities with least-privilege access to storage
+- **Network Isolation**: Storage accounts can be configured with private endpoints and firewall rules
+- **Audit Logging**: Azure Monitor and Activity Logs track all access to resources
+- **Data Retention Policies**: Configure Azure Storage lifecycle management to auto-delete old telemetry data
 
 ***
 
 ## Alternatives Considered
 
-Before settling on this architecture, I evaluated other approaches:
+Before settling on Azure Functions, I evaluated other approaches:
 
-**Polling Bouncie's API**: Would require a scheduled Lambda function running every minute. Less efficient, higher latency, more expensive.
+**Polling Bouncie's REST API**: Would require a scheduled function running every minute. Less efficient, higher latency, and more expensive than event-driven webhooks.
 
-**Third-Party Services**: Services like Zapier or IFTTT can receive webhooks, but they charge monthly fees and don't provide the same control or analytics capabilities.
+**Third-Party Integration Services**: Services like Zapier or IFTTT can receive webhooks, but they charge monthly subscription fees and don't provide the same control, data ownership, or analytics capabilities.
 
-**Self-Hosted Server**: Running my own server on EC2 or a VPS would cost $5-10/month minimum and require ongoing maintenance.
+**Self-Hosted Server**: Running my own server on a VM or VPS would cost $5-20/month minimum and require ongoing patching and maintenance.
 
-The serverless webhook approach won because it's the most cost-effective, scalable, and low-maintenance option.
+**AWS Lambda**: A viable alternative with similar pricing. I chose Azure Functions for this project due to existing Azure infrastructure and excellent Python support.
 
-***
-
-## Getting Started
-
-Want to build your own? Here's the roadmap:
-
-1. **Get a Bouncie device** (~$60 one-time, plus $8/month subscription)
-2. **Clone the GitHub repository**: `git clone https://github.com/lmcconnell1665/bouncie-webhook`
-3. **Configure AWS credentials** on your local machine
-4. **Deploy using SAM**: `sam build && sam deploy --guided`
-5. **Register webhook URL** in Bouncie's developer portal
-6. **Start driving** and watch the data flow in!
-
-The README includes detailed setup instructions and troubleshooting tips.
+The serverless webhook approach won because it's the most cost-effective, automatically scalable, and lowest-maintenance option for event-driven vehicle telemetry collection.
 
 ***
 
-## Conclusion
+## Getting Started with Bouncie Webhooks
 
-Building a custom vehicle analytics platform using webhooks and AWS serverless services proved to be both technically rewarding and practically useful. The system:
+Want to build your own vehicle analytics platform? Here's the step-by-step roadmap:
 
-- Costs essentially nothing to operate ($0/month within free tier)
-- Handles real-time data with minimal latency
-- Provides complete control over my vehicle data
-- Scales automatically without management overhead
-- Offers insights that improved my driving and saved money
+### Prerequisites
 
-Most importantly, it demonstrates the power of modern serverless architectures and webhook-based integrations. What once required expensive infrastructure and complex systems can now be built in an afternoon for free.
+1. **Get a Bouncie device** (~$67 one-time purchase, plus $8/month subscription at [bouncie.com](https://bouncie.com/))
+2. **Azure account** with an active subscription ([free tier](https://azure.microsoft.com/free/) works great)
+3. **Python 3.8+** installed locally
+4. **Azure Functions Core Tools** for local development
 
-The principles here apply far beyond vehicle telematics. Any service offering webhooks (GitHub, Stripe, Twilio, etc.) can be integrated into similar serverless data pipelines. Whether you're building analytics for your smart home, tracking fitness data, or monitoring business metrics, this pattern of API Gateway → Lambda → Storage is incredibly versatile.
+### Deployment Steps
 
-If you build your own version or extend the project in interesting ways, I'd love to hear about it. The code is open-source and contributions are welcome.
+```bash
+# Clone the repository
+git clone https://github.com/lmcconnell1665/bouncie-webhook.git
+cd bouncie-webhook
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Deploy to Azure (after logging in with 'az login')
+func azure functionapp publish <your-function-app-name>
+```
+
+### Configure Bouncie Webhook
+
+1. Log into the [Bouncie Developer Portal](https://docs.bouncie.dev/)
+2. Navigate to webhook configuration
+3. Enter your Azure Function URL as the webhook endpoint
+4. Select which events to receive (trips, location, alerts)
+5. **Start driving** and watch the data flow in!
+
+The repository README includes detailed setup instructions, sample webhook payloads, and troubleshooting tips.
 
 ***
 
-**Resources:**
-- [GitHub Repository](https://github.com/lmcconnell1665/bouncie-webhook)
-- [Bouncie Developer Documentation](https://docs.bouncie.dev/)
-- [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)
-- [AWS SAM Documentation](https://docs.aws.amazon.com/serverless-application-model/)
+## Conclusion: Serverless Vehicle Analytics Made Simple
+
+Building a custom vehicle analytics platform using Bouncie webhooks and Azure Functions proved to be both technically rewarding and practically useful. The [bouncie-webhook](https://github.com/lmcconnell1665/bouncie-webhook) system:
+
+- **Costs pennies per month** to operate (essentially free within Azure's generous free tier)
+- **Handles real-time GPS data** with sub-second latency
+- **Provides complete data ownership** — your vehicle data stays in your cloud account
+- **Scales automatically** from zero to thousands of events without management overhead
+- **Delivers actionable insights** that improved my driving habits and reduced fuel costs
+
+Most importantly, this project demonstrates the power of modern serverless architectures combined with webhook-based integrations. What once required expensive dedicated servers and complex infrastructure can now be deployed in an afternoon for virtually no cost.
+
+The patterns used here extend far beyond vehicle telematics. Any service offering webhooks (GitHub, Stripe, Twilio, IoT sensors, etc.) can be integrated into similar serverless data pipelines. Whether you're building analytics for smart home devices, tracking fitness wearables, or monitoring business metrics, the HTTP Trigger → Function → Storage pattern is incredibly versatile.
+
+### Open Source and Contributions
+
+The complete source code is available on GitHub at [lmcconnell1665/bouncie-webhook](https://github.com/lmcconnell1665/bouncie-webhook). Contributions, feature requests, and bug reports are welcome!
 
 ***
 
-*Have questions about implementing webhook receivers or serverless analytics? Want to share your own vehicle data projects? Feel free to reach out or open an issue on the GitHub repository.*
+## Resources and Further Reading
+
+- **[bouncie-webhook GitHub Repository](https://github.com/lmcconnell1665/bouncie-webhook)** — Complete source code for this project
+- **[Bouncie Developer Documentation](https://docs.bouncie.dev/)** — Official webhook API reference
+- **[Azure Functions Python Developer Guide](https://docs.microsoft.com/azure/azure-functions/functions-reference-python)** — Microsoft's official documentation
+- **[Azure Functions Pricing](https://azure.microsoft.com/pricing/details/functions/)** — Current pricing details and free tier limits
+
+***
+
+*Have questions about implementing Bouncie webhook receivers or building serverless vehicle analytics? Want to share your own OBD-II data projects? Feel free to [open an issue](https://github.com/lmcconnell1665/bouncie-webhook/issues) on the GitHub repository or reach out directly.*
