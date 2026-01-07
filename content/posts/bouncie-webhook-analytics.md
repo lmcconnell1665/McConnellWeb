@@ -1,8 +1,6 @@
 ---
 title: "Building a Vehicle Analytics Platform with Bouncie Webhooks and Azure Functions"
 date: 2026-01-07T00:00:00Z
-author:
-authorLink:
 description: "Step-by-step tutorial on building a serverless vehicle analytics platform using Bouncie webhooks and Azure Functions. Learn how to collect real-time car GPS data, process OBD-II telemetry, and store driving data for custom analytics - all for pennies per month."
 tags:
 - Azure
