@@ -81,14 +81,6 @@ The system is built entirely on Azure serverless services, providing:
 - **Pay-per-execution pricing** — only pay for actual compute time
 - **Built-in high availability** across Azure regions
 
-Here's the architecture diagram:
-
-```
-Bouncie Device → Bouncie Cloud → HTTP Trigger → Azure Function → Azure Storage
-                                                              ↓
-                                                       Application Insights
-```
-
 ### Azure Components Breakdown
 
 **Azure Functions (HTTP Trigger)**: The core of the [bouncie-webhook](https://github.com/lmcconnell1665/bouncie-webhook) project. This Python-based serverless function activates only when Bouncie sends an HTTP POST request with webhook data. You pay only for execution time measured in milliseconds.
