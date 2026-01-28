@@ -110,8 +110,8 @@ Before setting up Claude Code in Docker, ensure you have:
 First, create a Dockerfile that installs Claude Code and necessary development tools:
 
 ```dockerfile
-# Use official Python base image
-FROM python:3.11-slim
+# Use official Node.js base image
+FROM node:20-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -119,10 +119,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     vim \
     build-essential \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Claude Code CLI
-RUN pip install --no-cache-dir anthropic-cli
+RUN npm install -g @anthropic-ai/claude-code
 
 # Set working directory
 WORKDIR /workspace
@@ -455,11 +457,13 @@ This trades consistency for speed on macOS.
 Add support for multiple programming languages:
 
 ```dockerfile
-FROM python:3.11-slim
+FROM node:20-slim
 
-# Add Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
+# Add Python
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Add Go
 RUN wget https://go.dev/dl/go1.21.linux-amd64.tar.gz \
@@ -528,11 +532,11 @@ Minimize Docker image size for faster builds:
 
 ```dockerfile
 # Use slim base images
-FROM python:3.11-slim
+FROM node:20-slim
 
 # Combine RUN commands to reduce layers
 RUN apt-get update && apt-get install -y git curl \
-    && pip install anthropic-cli \
+    && npm install -g @anthropic-ai/claude-code \
     && rm -rf /var/lib/apt/lists/*
 
 # Use multi-stage builds for compiled languages
