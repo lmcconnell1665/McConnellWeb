@@ -6,8 +6,10 @@ authorLink:
 description: "Build a Python CLI tool for storing stock market data from Alpha Vantage API in AWS DynamoDB. Complete tutorial with Click framework, data pipeline setup, and machine learning preparation."
 tags:
 - AWS
-- Data Pipeline
 - DynamoDB
+- Python
+- Stock Market
+- Data Pipeline
 categories:
 - Tutorial
 draft: false

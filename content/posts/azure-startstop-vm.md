@@ -27,13 +27,13 @@ Using Azure Automation runbooks and the Azure Data Factory webhook this tutorial
 ***
 ## Step 1: Create an Azure automation account
 From within the Azure portal, navigate to the `Automation Account` service and create a new account.
-You will need elevated privledges to create this account.
+You will need elevated privileges to create this account.
 Make sure to create this account within the same subscription and resource group as the virtual machines you want to control.
 The `Create Azure Run as account` option must be set to 'Yes'.
 
 ***
 ## Step 2: Import the runbooks
-Download the two powershell scrips from [this GitHub repo](https://github.com/lmcconnell1665/AzureVMStartStop).
+Download the two PowerShell scripts from [this GitHub repo](https://github.com/lmcconnell1665/AzureVMStartStop).
 Change the `$AutomationRG` and `$AutomationAcct` parameters at the top of each script to match the names of your resource group and the automation account that you created.
 From within the automation account in the Azure portal, navigate to the `runbooks` in the left-hand menu and use the `Import a runbook` feature to add both `Start.ps1` and `Stop.ps1`.
 As you import each runbook you must also publish the runbook. See the screenshot below for an example.

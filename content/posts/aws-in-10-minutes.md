@@ -5,8 +5,9 @@ author:
 authorLink:
 description: "Quick start guide to cloud computing with AWS EC2 and R Studio. Learn to set up spot instances, connect via RDP, and leverage cloud power for data analysis and machine learning in just 10 minutes."
 tags:
-- Azure
-- Virtual Machine
+- AWS
+- EC2
+- Cloud Computing
 - R
 categories:
 - Tutorial
@@ -17,7 +18,7 @@ hiddenFromHomePage: true
 ***
 ## Introduction
 
-Quick start guide to leverging the power of the cloud using R Studio.
+Quick start guide to leveraging the power of the cloud using R Studio.
 
 {{< admonition type=info title="Incomplete walk thru" open=true >}}
 

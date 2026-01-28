@@ -1,13 +1,15 @@
 ---
-title: "Lint Your SQL Code - Develop with a Team"
+title: "SQLFluff Tutorial: Automate SQL Linting for Team Development"
 date: 2023-01-31T04:06:22Z
 author:
 authorLink:
 description: "Implement SQL code linting with SQLFluff for team development. Complete setup guide for automated code style enforcement with GitHub Actions and Azure DevOps pipelines."
 tags:
 - SQL
+- SQLFluff
+- Code Quality
 - dbt
-- Tutorial
+- CI/CD
 categories:
 - Tutorial
 draft: false
@@ -22,11 +24,11 @@ Code style guides aren't new. Your style guide acts as a basic code blueprint fo
 
 &nbsp;
 
-SQL code has always been treated a little differently. Each develoer has their own opinion on whether SQL keywords should be in caps or lowercase. Some developers space code out across many lines, while others put triple nested sub-queries on a single line.
+SQL code has always been treated a little differently. Each developer has their own opinion on whether SQL keywords should be in caps or lowercase. Some developers space code out across many lines, while others put triple nested sub-queries on a single line.
 
 &nbsp;
 
-Standardization becomes necessessary as your team grows and the number of `.sql` files in your repos increase. Here's how I recommend implementing this standardization using `SQLFluff` as an automatic SQL code linter...
+Standardization becomes necessary as your team grows and the number of `.sql` files in your repos increase. Here's how I recommend implementing this standardization using `SQLFluff` as an automatic SQL code linter...
 
 ***
 
@@ -114,4 +116,4 @@ Check out the docs for each below:
 
 ## Next steps
 
-This framework will help begin to standardize your SQL code format throughout your repositories. Other popular data science language like python have similiar linting tools (such as [flake8](https://medium.com/python-pandemonium/what-is-flake8-and-why-we-should-use-it-b89bd78073f2) and [pylint](https://pypi.org/project/pylint/)) that can be implemented using these same steps. All are customizeable to allow you to focus on what matters to your team.
+This framework will help begin to standardize your SQL code format throughout your repositories. Other popular data science languages like Python have similar linting tools (such as [flake8](https://medium.com/python-pandemonium/what-is-flake8-and-why-we-should-use-it-b89bd78073f2) and [pylint](https://pypi.org/project/pylint/)) that can be implemented using these same steps. All are customizable to allow you to focus on what matters to your team.

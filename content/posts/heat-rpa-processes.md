@@ -1,5 +1,5 @@
 ---
-title: "Implementing RPA at Scale using HEAT Methods"
+title: "Enterprise RPA Strategy: Implementing Robotic Process Automation at Scale"
 date: 2022-11-05T04:06:22Z
 author:
 authorLink:
@@ -7,6 +7,8 @@ description: "Scale RPA implementation with HEAT methods and Power Platform. Ent
 tags:
 - Power Automate
 - RPA
+- Process Automation
+- Enterprise
 - Digital Transformation
 categories:
 - Best Practices
