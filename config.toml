@@ -4,8 +4,8 @@
 # Luke McConnell
 # Reference files: https://hugoloveit.com/posts/
 
-# Name of the S3 bucket that is hosting the static website
-baseURL = "http://mcconnellweb.com.s3-website-us-east-1.amazonaws.com"
+# Canonical domain for the website (served via CloudFront CDN)
+baseURL = "https://mcconnellweb.com"
 
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "en"
