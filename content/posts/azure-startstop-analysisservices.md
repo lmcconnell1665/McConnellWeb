@@ -15,7 +15,7 @@ hiddenFromHomePage: true
 ---
 
 ***
-[Here is a great walk thru on YouTube](https://www.youtube.com/watch?v=PZ7io8ck2b4)
+[Here is a great walkthrough on YouTube](https://www.youtube.com/watch?v=PZ7io8ck2b4)
 
 [Access the GitHub repo here](https://github.com/lmcconnell1665/AzureAnalysisServices-StartStop)
 
@@ -37,7 +37,7 @@ You could combine this with the article I wrote on pausing and resuming a VM fro
 ***
 ## Step 1: Create an Azure automation account
 From within the Azure portal, navigate to the `Automation Account` service and create a new account.
-You will need elevated privledges to create this account.
+You will need elevated privileges to create this account.
 Make sure to create this account within the same subscription and resource group as the virtual machines you want to control.
 The `Create Azure Run as account` option must be set to 'Yes'.
 

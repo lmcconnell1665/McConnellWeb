@@ -22,12 +22,12 @@ This isn't naturally *repeatable* or *scalable*, which are both supposed to be m
 
 ***
 ## Infrastructure as Code
-Instead of tasking IT with clicking around the portal to create resource, configure settings, and assign access your organization needs to adopt the best practice of provisioning and managing your resource lifecycle using one of the many infrastructure as code language options. 
+Instead of tasking IT with clicking around the portal to create resources, configure settings, and assign access, your organization needs to adopt the best practice of provisioning and managing your resource lifecycle using one of the many infrastructure as code language options. 
 
 &nbsp;
 
 As I spend most of my time working on the Azure stack, I primarily use the Microsoft domain-specific language, [Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview), for these type of deployments. 
-This article is not a tutorial on Bicep (although I've linked some great tutorials below), but instead focusing on convincing you **WHY** your organization need to adopt this practice and the problems that can be solved with these techniques. 
+This article is not a tutorial on Bicep (although I've linked some great tutorials below), but instead focuses on convincing you **WHY** your organization needs to adopt this practice and the problems that can be solved with these techniques. 
 
 ***
 ## Reason 1: Consistency

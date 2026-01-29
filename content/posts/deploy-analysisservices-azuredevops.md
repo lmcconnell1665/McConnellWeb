@@ -25,7 +25,7 @@ On my quest to automate all deployments, CI/CD pipelines for Analysis Services T
 ## Step 1: Create a service principal in Azure Active Directory
 If you aren't familiar with service principals, think of it as a username/password that is assigned to an application to allow it to login to another. To automate the deployment you will need a service principal that Azure DevOps can use to authenticate with your Azure Analysis Services server. Make sure to assign this service principal the `contributor` role for the model in the Azure Portal and also add it as an `analysis services administrator` for the server using a tool like SSMS (using the format `app:{app-id}@{tenant-id}`).
 
-I need to create a more detailed walk thru for this step, but for now let me know if you need any help doing this! Here's some [good documentation](https://docs.microsoft.com/en-us/powershell/azure/create-azure-service-principal-azureps?view=azps-5.5.0#:~:text=An%20Azure%20service%20principal%20is,accessed%20and%20at%20which%20level.). 
+I need to create a more detailed walkthrough for this step, but for now let me know if you need any help doing this! Here's some [good documentation](https://docs.microsoft.com/en-us/powershell/azure/create-azure-service-principal-azureps?view=azps-5.5.0#:~:text=An%20Azure%20service%20principal%20is,accessed%20and%20at%20which%20level.). 
 
 ***
 ## Step 2: Add the PowerShell script to your repo and build pipeline

@@ -1,11 +1,13 @@
 ---
-title: "Lubridate Package"
+title: "Working with Dates in R: A Lubridate Tutorial"
 date: 2020-05-04T04:06:22Z
 author:
 authorLink:
 description: "Simplify date and time handling in R with the lubridate package. Complete tutorial with video examples for parsing dates, extracting components, and date arithmetic."
 tags:
 - R
+- Lubridate
+- Data Wrangling
 - Tool of the Week
 categories:
 - Tool of the Week

@@ -1,11 +1,13 @@
 ---
-title: "Xlookup"
+title: "Excel XLOOKUP Function: The Complete Guide"
 date: 2020-04-27T04:06:22Z
 author:
 authorLink:
 description: "Master Excel's XLOOKUP function - the upgraded version of VLOOKUP. Tutorial with video examples showing how to lookup values in any direction with improved functionality."
 tags:
 - Excel
+- XLOOKUP
+- VLOOKUP
 - Tool of the Week
 categories:
 - Tool of the Week

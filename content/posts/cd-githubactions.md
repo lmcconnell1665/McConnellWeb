@@ -1,5 +1,5 @@
 ---
-title: "Continuous Deployment using GitHub Actions"
+title: "Deploy Hugo Sites to AWS S3 with GitHub Actions"
 date: 2020-06-18T04:06:22Z
 author:
 authorLink:
@@ -7,14 +7,16 @@ description: "Complete guide to continuous deployment with GitHub Actions and AW
 tags:
 - AWS
 - GitHub Actions
-- Website
+- Hugo
+- CI/CD
+- S3
 categories:
 - Tutorial
 draft: false
 ---
 
 ***
-#### Want to learn how I built this website using Python, continously integrate my code and deploy it using GitHub Actions, and make it highly available with low latency using an AWS S3 Bucket and Content Delivery Network? Check out this walk thru.
+#### Want to learn how I built this website using Hugo, continuously integrate my code and deploy it using GitHub Actions, and make it highly available with low latency using an AWS S3 Bucket and Content Delivery Network? Check out this tutorial.
 
 ***
 [Access the GitHub repo here](https://github.com/lmcconnell1665/McConnellWeb)
@@ -42,7 +44,7 @@ This will allow you to create a new `.yml` file which are the workflow instructi
 ***
 ## Step 3: Create the workflow instructions
 Workflow instructions are grouped into jobs and each job consists of steps that are completed in an order.
-There are also intructions telling GitHub Actions when the workflow should run.
+There are also instructions telling GitHub Actions when the workflow should run.
 The `workflow.yml` file for my website are attached below.
 This workflow has one job called build and deploy which initiates 6 steps.
 The top `on: push` line tells GitHub Actions to run this workflow everytime a change is pushed to the repo.
@@ -109,9 +111,9 @@ This saved me the time of writing the code to assume the correct access credenti
 Once you have created the `.yml` workflow file, commit the changes and, depending on the instructions you provided, trigger the job to run.
 For me, this would happen immediately since I configured the workflow to run each time a change was pushed (the commit of the `.yml` file is a push).
 You can follow along in the Actions tab of GitHub to see the progress.
-If everything runs properly, you should see a screen similiar to the one below.
-If there are any problems during any of the steps, the workflow will stop and alert you of where the problem occured.
-This is beneficial because it will stop bad code from being deployed and also give you insight into where the error is occuring.
+If everything runs properly, you should see a screen similar to the one below.
+If there are any problems during any of the steps, the workflow will stop and alert you of where the problem occurred.
+This is beneficial because it will stop bad code from being deployed and also give you insight into where the error is occurring.
 
 {{< image src="/img/cd-githubactions/SuccessfulActionsWorkflow.png" caption="A screenshot of a successfully completed workflow in GitHub Actions.">}}
 
