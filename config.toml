@@ -11,7 +11,7 @@ baseURL = "https://mcconnellweb.com"
 defaultContentLanguage = "en"
 # language code
 languageCode = "en"
-title = "Luke McConnell"
+title = "Luke McConnell | Data & AI Architect"
 
 # Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
@@ -106,6 +106,8 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
     gravatarEmail = ""
     # URL of avatar shown in home page
     avatarURL = "img/headshot.png"
+    # Alt text for avatar image
+    avatarAlt = "Luke McConnell - Data and AI Architect"
     # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
     title = "Luke McConnell"
     # subtitle shown in home page
@@ -397,7 +399,7 @@ URL = "s3://mcconnellweb.com/?region=us-east-1" #your bucket here
 [sitemap]
   changefreq = "weekly"
   filename = "sitemap.xml"
-  priority = 0.5
+  priority = 0.6
 
 # Markup related configuration in Hugo
 [markup]

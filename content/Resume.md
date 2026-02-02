@@ -1,6 +1,7 @@
 ---
 title: "Resume"
 date: 2020-06-12T23:53:53Z
+description: "Resume and work experience for Luke McConnell, Data & AI Architect. Expertise in LangGraph, Databricks, Snowflake, and Azure cloud architecture."
 draft: false
 ---
 
@@ -32,7 +33,7 @@ Azure Solution Architect Expert, Azure Enterprise Data Analyst Associate, Azure 
 
 * Developing AI-powered cross-selling and prospecting solutions that enable professional and financial services companies to expand their client portfolios through data driven insights
 * Architecting enterprise data platform integrating 10+ customer data sources via Fivetran, Snowflake and dbt to deliver machine learning ready datasets for downstream analytics
-* Leads end-to-end customer onboaridng and integration, collaborating with business and technical stakeholders across the US to successfully deploy customers on the platform
+* Leads end-to-end customer onboarding and integration, collaborating with business and technical stakeholders across the US to successfully deploy customers on the platform
 * Designing and implementing agentic workflows using LangGraph to automate data enrichement and content delivery processes, streamlining platform operations
 
 &nbsp;
