@@ -1,9 +1,9 @@
 ---
-title: "Deploy Hugo Sites to AWS S3 with GitHub Actions"
+title: "GitHub Actions Continuous Deployment: Deploy Hugo Sites to AWS S3"
 date: 2020-06-18T04:06:22Z
 author:
 authorLink:
-description: "Complete guide to continuous deployment with GitHub Actions and AWS S3. Build and deploy Hugo websites automatically with CI/CD workflows, including configuration examples and best practices."
+description: "Learn how to set up continuous deployment with GitHub Actions and AWS S3. This step-by-step tutorial shows how to automatically build and deploy Hugo websites using GitHub Actions CI/CD workflows — including configuration examples, S3 bucket setup, and CloudFront CDN."
 tags:
 - AWS
 - GitHub Actions

@@ -1,9 +1,9 @@
 ---
-title: "SQLFluff Tutorial: Automate SQL Linting for Team Development"
+title: "SQL Linting with SQLFluff: Automate SQL Code Quality for Teams"
 date: 2023-01-31T04:06:22Z
 author:
 authorLink:
-description: "Implement SQL code linting with SQLFluff for team development. Complete setup guide for automated code style enforcement with GitHub Actions and Azure DevOps pipelines."
+description: "Learn how to implement SQL linting with SQLFluff to enforce consistent code style across your team. Complete setup guide for sql lint automation using GitHub Actions and Azure DevOps pipelines — with configuration examples for dbt and raw SQL projects."
 tags:
 - SQL
 - SQLFluff

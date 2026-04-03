@@ -1,9 +1,9 @@
 ---
-title: "Row Level Security and Column Masking in Databricks"
+title: "Databricks Unity Catalog: Row Level Security and Column Level Security"
 date: 2023-09-09T04:06:22Z
 author:
 authorLink:
-description: "Implement row-level security and dynamic column masking in Databricks with Unity Catalog. SQL examples for data governance, access control, and sensitive data protection in Delta tables."
+description: "Step-by-step guide to implementing row level security and column level security (dynamic data masking) in Databricks Unity Catalog. Includes SQL code examples for access control, data governance, and protecting sensitive data in Delta Lake tables."
 tags:
 - Databricks
 - Delta Tables
