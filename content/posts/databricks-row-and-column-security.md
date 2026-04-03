@@ -1,9 +1,9 @@
 ---
-title: "Row Level Security and Column Masking in Databricks"
+title: "Databricks Unity Catalog: Row Level Security and Column Level Security"
 date: 2023-09-09T04:06:22Z
 author:
 authorLink:
-description: "Implement row-level security and dynamic column masking in Databricks with Unity Catalog. SQL examples for data governance, access control, and sensitive data protection in Delta tables."
+description: "Implement row level security, column level security, and dynamic data masking in Databricks Unity Catalog. SQL examples for data governance and sensitive data protection in Delta tables."
 tags:
 - Databricks
 - Delta Tables
@@ -52,3 +52,63 @@ CREATE TABLE IF NOT EXISTS patient_ssn (
   `name` STRING,
    ssn STRING MASK simple_mask);
 ```
+
+***
+## Frequently Asked Questions
+
+**What is the difference between row level security and column level security in Databricks?**
+
+Row level security filters which *rows* a user can see — similar to adding a `WHERE` clause per user. Column level security (dynamic data masking) controls which *column values* are visible, replacing sensitive data (such as SSNs or emails) with masked values like `****` for unauthorized users while returning the real values for admins.
+
+**Do I need Unity Catalog to implement row level security in Databricks?**
+
+Yes. Row filters and column masks using SQL functions (as shown above) require Databricks Unity Catalog. The legacy Table ACLs in the Hive metastore do not support these fine-grained access controls. If you are still on the Hive metastore, you will need to migrate to Unity Catalog first.
+
+**How does dynamic data masking work in Databricks Unity Catalog?**
+
+You create a masking function using `CREATE FUNCTION` that returns either the real value or a masked substitute based on the calling user's group membership. You then attach that function to a specific column with `ALTER TABLE ... ALTER COLUMN ... SET MASK`. Every subsequent query against that table automatically applies the masking logic at query time.
+
+**Can I apply multiple row filters or column masks to the same table?**
+
+Each table supports one active row filter and one mask per column at a time. You can replace existing filters or masks by rerunning the `ALTER TABLE SET ROW FILTER` or `SET MASK` commands with a new function.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between row level security and column level security in Databricks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Row level security filters which rows a user can see — similar to adding a WHERE clause per user. Column level security (dynamic data masking) controls which column values are visible, replacing sensitive data with masked values for unauthorized users."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need Unity Catalog to implement row level security in Databricks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Row filters and column masks using SQL functions require Databricks Unity Catalog. The legacy Table ACLs in the Hive metastore do not support these fine-grained access controls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does dynamic data masking work in Databricks Unity Catalog?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You create a masking function using CREATE FUNCTION that returns either the real value or a masked substitute based on the calling user's group membership. You then attach that function to a specific column with ALTER TABLE ... ALTER COLUMN ... SET MASK."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I apply multiple row filters or column masks to the same table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each table supports one active row filter and one mask per column at a time. You can replace existing filters or masks by rerunning the ALTER TABLE SET ROW FILTER or SET MASK commands with a new function."
+      }
+    }
+  ]
+}
+</script>
