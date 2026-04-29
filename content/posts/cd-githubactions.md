@@ -1,6 +1,6 @@
 ---
-title: "Deploy Hugo Sites to AWS S3 with GitHub Actions"
-date: 2020-06-18T04:06:22Z
+title: "GitHub Actions Continuous Deployment: Deploy Hugo Sites to AWS S3"
+date: 2024-06-18T04:06:22Z
 author:
 authorLink:
 description: "Complete guide to continuous deployment with GitHub Actions and AWS S3. Build and deploy Hugo websites automatically with CI/CD workflows, including configuration examples and best practices."
@@ -121,3 +121,63 @@ This is beneficial because it will stop bad code from being deployed and also gi
 ## Demo
 
 {{< youtube GNAOdeaXtvE >}}
+
+***
+## Frequently Asked Questions
+
+**Does this continuous deployment approach work with GitLab CI/CD?**
+
+Yes. The core concepts — store source code in a repo, trigger a pipeline on push, build the site, deploy to S3 — apply equally to GitLab CI/CD pipelines. The `.yml` syntax differs slightly, but the steps map directly. GitLab even has a built-in `AWS S3 deploy` job template you can use.
+
+**Can I use this workflow for non-Hugo static sites?**
+
+Absolutely. The GitHub Actions workflow structure works for any static site generator (Next.js, Gatsby, Jekyll, etc.). Replace the Hugo setup and build steps with the equivalent commands for your framework. The AWS credentials and `hugo deploy` step can be swapped for an `aws s3 sync` command.
+
+**How do I deploy to a different AWS region?**
+
+Update the `aws-region` value in the `Configure-AWS-credentials` step to your target region (e.g., `us-west-2`). Also ensure your S3 bucket and any CloudFront distribution are configured in that region.
+
+**What happens if the GitHub Actions workflow fails mid-deploy?**
+
+The workflow stops at the failed step and marks the run as failed — no further steps execute. This means a failed build will not push broken files to S3. You'll receive a notification and can inspect the logs directly in the GitHub Actions tab to diagnose the issue.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this continuous deployment approach work with GitLab CI/CD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The core concepts apply equally to GitLab CI/CD pipelines. The .yml syntax differs slightly, but the steps map directly. GitLab even has a built-in AWS S3 deploy job template you can use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this workflow for non-Hugo static sites?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. The GitHub Actions workflow structure works for any static site generator (Next.js, Gatsby, Jekyll, etc.). Replace the Hugo setup and build steps with the equivalent commands for your framework."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I deploy to a different AWS region?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update the aws-region value in the Configure-AWS-credentials step to your target region (e.g., us-west-2). Also ensure your S3 bucket and any CloudFront distribution are configured in that region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the GitHub Actions workflow fails mid-deploy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The workflow stops at the failed step and marks the run as failed — no further steps execute. This means a failed build will not push broken files to S3."
+      }
+    }
+  ]
+}
+</script>

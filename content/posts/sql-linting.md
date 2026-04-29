@@ -1,9 +1,9 @@
 ---
-title: "SQLFluff Tutorial: Automate SQL Linting for Team Development"
+title: "SQL Linting with SQLFluff: Automate SQL Code Quality for Teams"
 date: 2023-01-31T04:06:22Z
 author:
 authorLink:
-description: "Implement SQL code linting with SQLFluff for team development. Complete setup guide for automated code style enforcement with GitHub Actions and Azure DevOps pipelines."
+description: "SQL linting with SQLFluff — a complete setup guide for automated sql lint enforcement. Integrate SQLFluff with GitHub Actions and Azure DevOps pipelines to standardize SQL code quality across your team."
 tags:
 - SQL
 - SQLFluff
@@ -117,3 +117,63 @@ Check out the docs for each below:
 ## Next steps
 
 This framework will help begin to standardize your SQL code format throughout your repositories. Other popular data science languages like Python have similar linting tools (such as [flake8](https://medium.com/python-pandemonium/what-is-flake8-and-why-we-should-use-it-b89bd78073f2) and [pylint](https://pypi.org/project/pylint/)) that can be implemented using these same steps. All are customizable to allow you to focus on what matters to your team.
+
+***
+## Frequently Asked Questions
+
+**What is SQL linting?**
+
+SQL linting is the process of running static code analysis on `.sql` files to catch style violations, formatting inconsistencies, and potential errors before code is merged. Just like Python's `flake8` or JavaScript's `ESLint`, a SQL linter like SQLFluff checks your code against a configurable ruleset and reports (or auto-fixes) violations.
+
+**Does SQLFluff support all SQL dialects?**
+
+SQLFluff supports a wide range of dialects including ANSI SQL, BigQuery, Snowflake, Databricks (Spark SQL), PostgreSQL, MySQL, T-SQL, Redshift, and more. You configure the dialect in your `.sqlfluff` config file. This makes it suitable for most modern data stacks.
+
+**Can I use SQLFluff with dbt?**
+
+Yes — SQLFluff has first-class dbt support via the `dbt-templater`. It understands Jinja templating used in dbt models, so it can lint `.sql` files that contain `{{ ref() }}`, `{{ source() }}`, and other dbt macros. Set `templater = dbt` in your `.sqlfluff` config to enable this.
+
+**How do I fix existing SQL files that fail linting?**
+
+Run `sqlfluff fix` on your SQL directory. SQLFluff will automatically correct the majority of style violations (indentation, capitalization, spacing) in place. Some rules require manual fixes. It's best to run `sqlfluff fix` on your entire codebase once when first adopting the tool, then enforce rules going forward via CI.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is SQL linting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQL linting is the process of running static code analysis on .sql files to catch style violations, formatting inconsistencies, and potential errors before code is merged. A SQL linter like SQLFluff checks your code against a configurable ruleset and reports or auto-fixes violations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does SQLFluff support all SQL dialects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQLFluff supports a wide range of dialects including ANSI SQL, BigQuery, Snowflake, Databricks (Spark SQL), PostgreSQL, MySQL, T-SQL, Redshift, and more. You configure the dialect in your .sqlfluff config file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use SQLFluff with dbt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — SQLFluff has first-class dbt support via the dbt-templater. It understands Jinja templating used in dbt models, so it can lint .sql files that contain ref(), source(), and other dbt macros. Set templater = dbt in your .sqlfluff config to enable this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I fix existing SQL files that fail linting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run sqlfluff fix on your SQL directory. SQLFluff will automatically correct the majority of style violations in place. It's best to run sqlfluff fix on your entire codebase once when first adopting the tool, then enforce rules going forward via CI."
+      }
+    }
+  ]
+}
+</script>
